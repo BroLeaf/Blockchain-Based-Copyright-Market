@@ -46,7 +46,13 @@ function _uploadFileHash(fileHash) {
 
 }
 
+function _checkTHash(tHash) {
+    let resp = web3.eth.getTransactionReceipt(tHash);
+    return resp;
+}
+
 module.exports = {
     getUserInfo: _getUserInfo,
     uploadFileHash: _uploadFileHash,
+    checkTHash: _checkTHash,
 }

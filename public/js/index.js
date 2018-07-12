@@ -32,3 +32,15 @@ function uploadFileHash() {
     let obj = eval('(' + json + ')');
     console.log(obj);
 }
+
+function checkTHash() {
+    let xhttp = getXhttp();
+
+    xhttp.open("POST", "/tHash", false);
+    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhttp.send("tHash=0xb3dc9ab8780776ef406b1664c1faf08d1d5f45acffe1172be6be0a394d3de938");
+
+    let json = xhttp.responseText;
+    let obj = eval('(' + json + ')');
+    console.log(obj.blockNumber);
+}

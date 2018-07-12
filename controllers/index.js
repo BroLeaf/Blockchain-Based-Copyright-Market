@@ -28,4 +28,12 @@ router.post('/fileHash', function(req, res, next) {
     });
 })
 
+router.post('/tHash', function(req, res, next) {
+    let tHash = req.body.tHash;
+    // console.log(tHash);
+
+    let resp = geth.checkTHash(tHash);
+    res.send(resp);
+})
+
 module.exports = router;
