@@ -44,3 +44,29 @@ function checkTHash() {
     let obj = eval('(' + json + ')');
     console.log(obj.blockNumber);
 }
+
+function uploadFile() {
+    console.log("no thing happened");
+}
+
+function createContract() {
+    let xhttp = getXhttp();
+
+    xhttp.open("POST", "/contract", false);
+    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhttp.send("addr1=0x135&addr2=0x246");
+
+    let json = xhttp.responseText;
+    let obj = eval('(' + json + ')');
+    console.log(obj.blockNumber);
+}
+
+function getLatestContract() {
+    let xhttp = getXhttp();
+    xhttp.open("GET", "/contract", false);
+    xhttp.send();
+
+    let json = xhttp.responseText;
+    // let obj = eval('(' + json + ')');
+    console.log(json);
+}

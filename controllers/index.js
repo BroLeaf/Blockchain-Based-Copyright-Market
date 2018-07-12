@@ -36,4 +36,18 @@ router.post('/tHash', function(req, res, next) {
     res.send(resp);
 })
 
+router.post('/contract', function(req, res, next) {
+    let addr1 = req.body.addr1;
+    let addr2 = req.body.addr2;
+    console.log(addr1, addr2);
+
+    let resp = geth.createContract();
+    res.send(resp);
+})
+
+router.get('/contract', function(req, res, next) {
+    let resp = geth.getLatestContract();
+    res.send(resp);
+})
+
 module.exports = router;
