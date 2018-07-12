@@ -7,11 +7,13 @@ router.get('/', function(req, res, next) {
     res.render('index', { title: 'Express' });
 });
 
+// get userInfo
 router.get('/userInfo', function(req, res, next) {
     let userInfo = geth.getUserInfo();
     res.send(userInfo);
 });
 
+// put fileHash onto blockchain
 router.post('/fileHash', function(req, res, next) {
     let fileHash = req.body.fileHash;
     // console.log(fileHash);
@@ -28,6 +30,7 @@ router.post('/fileHash', function(req, res, next) {
     });
 })
 
+// get transaction information, such as blocknumber ...
 router.post('/tHash', function(req, res, next) {
     let tHash = req.body.tHash;
     // console.log(tHash);
@@ -36,6 +39,7 @@ router.post('/tHash', function(req, res, next) {
     res.send(resp);
 })
 
+// create a contract. return when compiled, not mined
 router.post('/contract', function(req, res, next) {
     let addr1 = req.body.addr1;
     let addr2 = req.body.addr2;
@@ -45,6 +49,8 @@ router.post('/contract', function(req, res, next) {
     res.send(resp);
 })
 
+// TODO: change to query addr. in database
+// get latest contract address.
 router.get('/contract', function(req, res, next) {
     let resp = geth.getLatestContract();
     res.send(resp);
