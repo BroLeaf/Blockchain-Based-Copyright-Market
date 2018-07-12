@@ -12,4 +12,20 @@ router.get('/userInfo', function(req, res, next) {
     res.send(userInfo);
 });
 
+router.post('/fileHash', function(req, res, next) {
+    let fileHash = req.body.fileHash;
+    // console.log(fileHash);
+
+    geth.uploadFileHash(fileHash)
+    .then( tHash => {
+        console.log("tHash in route:  " + tHash);
+        res.send({
+            tHash: tHash
+        });
+    })
+    .catch( err => {
+        console.log(err);
+    });
+})
+
 module.exports = router;

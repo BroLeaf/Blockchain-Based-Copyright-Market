@@ -20,3 +20,15 @@ function getUserInfo() {
     let obj = eval('(' + json + ')');
     console.log(obj);
 }
+
+function uploadFileHash() {
+    let xhttp = getXhttp();
+
+    xhttp.open("POST", "/fileHash", false);
+    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhttp.send("fileHash=a1b2c3d4");
+
+    let json = xhttp.responseText;
+    let obj = eval('(' + json + ')');
+    console.log(obj);
+}
