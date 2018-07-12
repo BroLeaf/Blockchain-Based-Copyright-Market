@@ -1,3 +1,6 @@
+// TODO: replace local variable: latestContractAddr to db.query
+var latestContractAddr;
+
 // create an XMLHttpRequest Object
 function getXhttp(){
     let xhttp;
@@ -67,6 +70,19 @@ function getLatestContract() {
     xhttp.send();
 
     let json = xhttp.responseText;
+    latestContractAddr = json;
     // let obj = eval('(' + json + ')');
     console.log(json);
+}
+
+function sendEth() {
+    let xhttp = getXhttp();
+
+    xhttp.open("POST", "/receiveAddr", false);
+    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhttp.send("addr=" + latestContractAddr);
+
+    let json = xhttp.responseText;
+    let obj = eval('(' + json + ')');
+    console.log(obj);
 }

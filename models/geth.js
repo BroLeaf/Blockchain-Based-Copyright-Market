@@ -16,12 +16,17 @@ function unlockAdminAccout() {
 }
 
 function _getUserInfo(){
-    let account = web3.eth.accounts[0];
-    let balance = web3.fromWei(web3.eth.getBalance(web3.eth.accounts[0]),'ether');
-    return {
-        account: account,
-        balance: balance,
-    };
+    let resp = new Array();
+    for(let i=0; i<3; ++i) {
+        let account = web3.eth.accounts[i];
+        let balance = web3.fromWei(web3.eth.getBalance(account),'ether');
+        resp.push({
+            account: account,
+            balance: balance
+        })
+    }
+
+    return resp;
 }
 
 function _uploadFileHash(fileHash) {
@@ -93,10 +98,35 @@ function _getLatestContract() {
     return latestContractAddr;
 }
 
+function _sendEth(dest) {
+    unlockAdminAccout();
+    let adminAccount = web3.eth.accounts[0];
+    let tHash;
+
+    web3.eth.sendTransaction({
+        from: adminAccount,
+        to: dest,
+        value: web3.toWei(10, "ether")
+    }, (err, Hash) => {
+        if(err)
+            console.log(err);
+        else 
+            console.log("new tHash: " + Hash);
+        tHash = Hash;
+    });
+
+    return new Promise( (resolve, reject) => {
+        setTimeout(function(){
+            resolve(tHash);
+        }, 3000);
+    });
+}
+
 module.exports = {
     getUserInfo: _getUserInfo,
     uploadFileHash: _uploadFileHash,
     checkTHash: _checkTHash,
     createContract: _createContract,
     getLatestContract: _getLatestContract,
+    sendEth: _sendEth,
 }
