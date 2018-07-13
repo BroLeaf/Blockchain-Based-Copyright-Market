@@ -5,3 +5,7 @@ function gotoCreators() {
 function gotoUsers() {
     window.location = '/users';
 }
+
+function gotoLogin() {
+    console.log('login page does not complete yet');
+}
