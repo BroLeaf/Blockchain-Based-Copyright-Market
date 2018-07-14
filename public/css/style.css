@@ -6,3 +6,32 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+.fullpage {
+  min-height: 110%;
+  position: relative;
+}
+
+.page_header {
+  height: 40px;
+}
+
+.page_content {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.page_footer {
+  height: 40px;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
+
+/* .page_footer {
+  height: 40px;
+  position: relative;
+  margin-top: -40px;
+} */
+

@@ -7,15 +7,44 @@
     </head>
 
     <body>
-        <button onclick="getUserInfo()"> getUserInfo </button>
-        <button onclick="uploadFileHash()"> uploadFileHash </button>
-        <button onclick="checkTHash()"> checkTHash </button>
 
-        <p></p>
+		<!-- First -->
+        <section id="first" class="fullpage">
 
-        <button onclick="uploadFile()"> uploadFile </button>
-        <button onclick="createContract()"> createContract </button>
-        <button onclick="getLatestContract()"> getLatestContract </button>
+            <header class="page_header">
+                <h1> step1 </h1>
+            </header>
+
+            <div class="page_content">
+                <button onclick="getUserInfo()"> getUserInfo </button>
+                <button onclick="uploadFileHash()"> uploadFileHash </button>
+                <button onclick="checkTHash()"> checkTHash </button>
+            </div>
+
+            <footer class="page_footer">
+                <a href="#second">go to step2</a>
+            </footer>
+
+        </section>
+
+		<!-- Second -->
+        <section id="second" class="fullpage">
+
+            <header class="page_header">
+                <h1> step2 </h1>
+            </header>
+
+            <div class="page_content">
+                <button onclick="uploadFile()"> uploadFile </button>
+                <button onclick="createContract()"> createContract </button>
+                <button onclick="getLatestContract()"> getLatestContract </button>
+            </div>
+
+            <footer class="page_footer">
+                <a href="#third">go to step3</a>
+            </footer>
+
+        </section>
 
     </body>
 
