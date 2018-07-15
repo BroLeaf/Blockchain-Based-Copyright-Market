@@ -31,11 +31,31 @@
         <section id="second" class="fullpage">
 
             <header class="page_header">
-                <h1> step2 </h1>
+                <h1> step2: upload file </h1>
             </header>
 
             <div class="page_content">
-                <button onclick="uploadFile()"> uploadFile </button>
+                Choose a file: <br />
+                <form action="./file_upload" method="post" enctype="multipart/form-data">
+                    <input type="file" name="stream">
+                    <input type="button" data-inline="true" value="Input" id="filesubmit" onclick="uploadfile()">
+                </form>
+            </div>
+
+            <footer class="page_footer">
+                <a href="#third">go to step3</a>
+            </footer>
+
+        </section>
+
+		<!-- Third -->
+        <section id="third" class="fullpage">
+
+            <header class="page_header">
+                <h1> step3 </h1>
+            </header>
+
+            <div class="page_content">
                 <button onclick="createContract()"> createContract </button>
                 <button onclick="getLatestContract()"> getLatestContract </button>
             </div>
@@ -46,6 +66,16 @@
 
         </section>
 
+        <script src="/js/jquery-3.1.1.min.js"></script>
+        <script src="/js/asmcrypto.js"></script>
+        <script src="/js/PFCCTR.js"></script>
+        <script src="/js/Utility.js"></script>
+        <script src="/MAKA/MAKA.js"></script>
+        <script src="/MAKA/doMAKA.js"></script>
+        <script src="/MAKA/loadCard.js"></script>
+        <script src="/MAKA/usage.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/uploadFile.js"></script>
     </body>
 
 </html>
