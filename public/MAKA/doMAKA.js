@@ -21,7 +21,7 @@ function newCard(cardUrl, val, condition) {
     var k = document.getElementById("forNewCard");
     if(val == "1") {
         if(condition == 1)
-            k.innerHTML = k.innerHTML + "<div style='position:absolute;left:0;top:0;width:100%;height:100%;z-index=99999;background-color:white;text-align:center;'><a download='newCard.card' href="+cardUrl+">If it didn't download the new card automatically, please download it manually!</a><br><br><br><a href='upload.html'>ACS Go!</a></div>";
+            k.innerHTML = k.innerHTML + "<div style='position:absolute;left:0;top:0;width:100%;height:100%;z-index=99999;background-color:white;text-align:center;'><a download='newCard.card' href="+cardUrl+">If it didn't download the new card automatically, please download it manually!</a><br><br><br><a href='/'>ACS Go!</a></div>";
         else if(condition == 2)
             k.innerHTML = k.innerHTML + "<div style='position:absolute;left:0;top:0;width:100%;height:100%;z-index=99999;background-color:white;text-align:center;'><a download='newCard.card' href="+cardUrl+">If it didn't download the new card automatically, please download it manually!</a><br><br><br><a href='finance_admin.html'>Continue</a></div>";
        else 
