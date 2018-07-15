@@ -1,7 +1,6 @@
-// TODO: replace local variable: latestContractAddr to db.query
-var latestContractAddr;
 var latestTHash;
 var hasBlock = false;
+var hasFile = true;
 
 // create an XMLHttpRequest Object
 function getXhttp(){
@@ -28,9 +27,12 @@ function getUserInfo() {
 
 function uploadFileHash() {
     let fileHash = document.getElementById("fileHash").value;
-    console.log("fileHash=" + fileHash);
-    let xhttp = getXhttp();
+    if(fileHash == undefined) {
+        alert("Please input file hash");
+        return;
+    }
 
+    let xhttp = getXhttp();
     xhttp.open("POST", "/fileHash", false);
     xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhttp.send("fileHash="+fileHash);
@@ -46,14 +48,13 @@ function checkTHash() {
         return;
 
     let xhttp = getXhttp();
-
     xhttp.open("POST", "/tHash", false);
     xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhttp.send("tHash="+latestTHash);
 
     let json = xhttp.responseText;
     if( json.length == 0) {
-        alert("It's mining ... please retry after a few seconds");
+        alert("It's mining ... Please retry after a few seconds");
         return;
     }
 
@@ -64,9 +65,42 @@ function checkTHash() {
     }
 }
 
+function createContract() {
+    let addr1 = document.getElementById("recvAddr1").value;
+    let addr2 = document.getElementById("recvAddr2").value;
+    if(addr1==undefined || addr2==undefined) {
+        alert("Please input the receiver address.");
+        return
+    }
+
+    let xhttp = getXhttp();
+    xhttp.open("POST", "/contract", false);
+    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhttp.send("addr1=" + addr1 + "&addr2=" + addr2);
+
+    let json = xhttp.responseText;
+    let obj = eval('(' + json + ')');
+    console.log(obj);
+}
+
+function getContractAddr() {
+    let xhttp = getXhttp();
+    xhttp.open("GET", "/contract", false);
+    xhttp.send();
+
+    let json = xhttp.responseText;
+    if( json.length == 0) {
+        alert("It's mining ... Please retry after a few seconds");
+        return;
+    }
+    // let obj = eval('(' + json + ')');
+    console.log(json);
+    alert("contract address is " + json);
+}
+
 function gotoStep2() {
     if(hasBlock == false) {
-        alert("please check tHash first");
+        alert("Please check tHash first");
         return;
     }
 
@@ -75,25 +109,13 @@ function gotoStep2() {
     a.click();
 }
 
-function createContract() {
-    let xhttp = getXhttp();
+function gotoStep3() {
+    if(hasFile == false) {
+        alert("Please upload file first");
+        return;
+    }
 
-    xhttp.open("POST", "/contract", false);
-    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhttp.send("addr1=0x135&addr2=0x246");
-
-    let json = xhttp.responseText;
-    let obj = eval('(' + json + ')');
-    console.log(obj.blockNumber);
-}
-
-function getLatestContract() {
-    let xhttp = getXhttp();
-    xhttp.open("GET", "/contract", false);
-    xhttp.send();
-
-    let json = xhttp.responseText;
-    latestContractAddr = json;
-    // let obj = eval('(' + json + ')');
-    console.log(json);
+    let a = document.createElement('a');
+    a.href = "#third";
+    a.click();
 }

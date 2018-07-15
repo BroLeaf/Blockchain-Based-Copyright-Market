@@ -46,12 +46,12 @@
                 Choose a file: <br />
                 <form action="./file_upload" method="post" enctype="multipart/form-data">
                     <input type="file" name="stream">
-                    <input type="button" data-inline="true" value="Input" id="filesubmit" onclick="uploadfile()">
+                    <input type="button" data-inline="true" value="upload" id="filesubmit" onclick="uploadfile(); hasFile=true;">
                 </form>
             </div>
 
             <footer class="page_footer">
-                <a href="#third">go to step3</a>
+                <a onclick="gotoStep3();">go to step3</a>
             </footer>
 
         </section>
@@ -60,21 +60,26 @@
         <section id="third" class="fullpage">
 
             <header class="page_header">
-                <h1> step3 </h1>
+                <h1> Step 3. create smart contract</h1>
             </header>
 
             <div class="page_content">
-                <button onclick="createContract()"> createContract </button>
-                <button onclick="getLatestContract()"> getLatestContract </button>
+                Receiver Address:<br>
+                <input id="recvAddr1" type="text" placefoder="0x123"><br>
+                <input id="recvAddr2" type="text" placefoder="0x123"><br>
+                <button onclick="createContract()"> createContract </button><p>
+
+                <button onclick="getContractAddr()"> getContractAddr </button>
             </div>
 
             <footer class="page_footer">
-                <a href="#third">go to step3</a>
+                <a href="/">back to Home</a>
             </footer>
 
         </section>
 
         <script src="/js/jquery-3.1.1.min.js"></script>
+        <script src="/js/asmcrypto.js"></script>
         <script src="/js/PFCCTR.js"></script>
         <script src="/js/Utility.js"></script>
         <script src="/MAKA/MAKA.js"></script>
