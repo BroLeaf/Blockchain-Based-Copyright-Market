@@ -48,10 +48,6 @@ function checkTHash() {
     console.log(obj.blockNumber);
 }
 
-function uploadFile() {
-    console.log("no thing happened");
-}
-
 function createContract() {
     let xhttp = getXhttp();
 

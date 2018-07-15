@@ -29,7 +29,7 @@ module.exports={
 			if (files[data.name].slice * 100000 >= files[data.name].size) {
 				console.log(data.name);
 				var fileBuffer = Buffer.concat(files[data.name].data); 
-				fs.writeFile(__dirname +'/storage/'+data.name, fileBuffer, (err) => { 
+				fs.writeFile(__dirname +'/../data/storage/'+data.name, fileBuffer, (err) => { 
 					delete files[data.name]; 
 					if (err) 
 					{
@@ -45,5 +45,9 @@ module.exports={
 				}); 
 			}
 		});
+		socket.on('end', function(){
+			console.log("socket end");
+			socket.disconnect(0);
+		})
 	}
 };
