@@ -7,5 +7,5 @@ function gotoUsers() {
 }
 
 function gotoLogin() {
-    console.log('login page does not complete yet');
+    window.location = '/login';
 }
