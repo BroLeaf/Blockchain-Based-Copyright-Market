@@ -12,17 +12,25 @@
         <section id="first" class="fullpage">
 
             <header class="page_header">
-                <h1> step1 </h1>
+                <h1> Step 1: submit file hash </h1>
             </header>
 
             <div class="page_content">
-                <button onclick="getUserInfo()"> getUserInfo </button>
-                <button onclick="uploadFileHash()"> uploadFileHash </button>
+                <!--
+                <button onclick="getUserInfo()"> getUserInfo </button><br>
+                <p></p>
+                -->
+
+                File Hash:
+                <input id="fileHash" type="text" placefoder="0x123">
+                <button onclick="uploadFileHash()"> submit </button>
+                <p></p>
+
                 <button onclick="checkTHash()"> checkTHash </button>
             </div>
 
             <footer class="page_footer">
-                <a href="#second">go to step2</a>
+                <a onclick="gotoStep2();">go to step2</a>
             </footer>
 
         </section>
@@ -31,7 +39,7 @@
         <section id="second" class="fullpage">
 
             <header class="page_header">
-                <h1> step2: upload file </h1>
+                <h1> Step 2: upload file </h1>
             </header>
 
             <div class="page_content">
@@ -67,7 +75,6 @@
         </section>
 
         <script src="/js/jquery-3.1.1.min.js"></script>
-        <script src="/js/asmcrypto.js"></script>
         <script src="/js/PFCCTR.js"></script>
         <script src="/js/Utility.js"></script>
         <script src="/MAKA/MAKA.js"></script>

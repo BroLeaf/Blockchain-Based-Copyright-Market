@@ -1,5 +1,7 @@
 // TODO: replace local variable: latestContractAddr to db.query
 var latestContractAddr;
+var latestTHash;
+var hasBlock = false;
 
 // create an XMLHttpRequest Object
 function getXhttp(){
@@ -25,27 +27,52 @@ function getUserInfo() {
 }
 
 function uploadFileHash() {
+    let fileHash = document.getElementById("fileHash").value;
+    console.log("fileHash=" + fileHash);
     let xhttp = getXhttp();
 
     xhttp.open("POST", "/fileHash", false);
     xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhttp.send("fileHash=a1b2c3d4");
+    xhttp.send("fileHash="+fileHash);
 
     let json = xhttp.responseText;
     let obj = eval('(' + json + ')');
     console.log(obj);
+    latestTHash = obj.tHash;
 }
 
 function checkTHash() {
+    if(latestTHash == undefined)
+        return;
+
     let xhttp = getXhttp();
 
     xhttp.open("POST", "/tHash", false);
     xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhttp.send("tHash=0xb3dc9ab8780776ef406b1664c1faf08d1d5f45acffe1172be6be0a394d3de938");
+    xhttp.send("tHash="+latestTHash);
 
     let json = xhttp.responseText;
+    if( json.length == 0) {
+        alert("It's mining ... please retry after a few seconds");
+        return;
+    }
+
     let obj = eval('(' + json + ')');
-    console.log(obj.blockNumber);
+    if( obj.blockNumber != undefined) {
+        alert("It's mined !!! block Number is " + obj.blockNumber);
+        hasBlock = true;
+    }
+}
+
+function gotoStep2() {
+    if(hasBlock == false) {
+        alert("please check tHash first");
+        return;
+    }
+
+    let a = document.createElement('a');
+    a.href = "#second";
+    a.click();
 }
 
 function createContract() {
