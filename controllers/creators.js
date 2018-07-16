@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var geth = require('../models/geth.js');
+var db = require("../models/db.js");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -71,6 +72,16 @@ router.post('/receiveAddr', function(req, res, next) {
     .catch( err => {
         console.log(err);
     });
+})
+
+router.post('/fileInfo', function(req, res, next) {
+    keyword = req.body.keyword;
+    author = req.body.author;
+    year = req.body.year;
+    console.log("in router post fileInfo");
+    
+    db.dbinsert(keyword, author, year);
+    res.send("Insert success.");
 })
 
 module.exports = router;

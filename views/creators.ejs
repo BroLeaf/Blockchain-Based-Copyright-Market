@@ -22,7 +22,7 @@
                 -->
 
                 File Hash:
-                <input id="fileHash" type="text" placefoder="0x123">
+                <input id="fileHash" type="text" placeholder="0x123">
                 <button onclick="uploadFileHash()"> submit </button>
                 <p></p>
 
@@ -48,6 +48,15 @@
                     <input type="file" name="stream">
                     <input type="button" data-inline="true" value="upload" id="filesubmit" onclick="uploadfile(); hasFile=true;">
                 </form>
+                <p></p>
+
+                File Information ... <br>
+                keyword: <input id="keyword" type="text" placeholder="0x123"><br>
+                author:  <input id="author" type="text" placeholder="0x123"><br>
+                year:    <input id="year" type="text" placeholder="0x123"><br>
+                <button onclick="uploadFileInfo()"> submit </button>
+                <p></p>
+
             </div>
 
             <footer class="page_footer">
@@ -65,8 +74,8 @@
 
             <div class="page_content">
                 Receiver Address:<br>
-                <input id="recvAddr1" type="text" placefoder="0x123"><br>
-                <input id="recvAddr2" type="text" placefoder="0x123"><br>
+                <input id="recvAddr1" type="text" placeholder="0x123"><br>
+                <input id="recvAddr2" type="text" placeholder="0x123"><br>
                 <button onclick="createContract()"> createContract </button><p>
 
                 <button onclick="getContractAddr()"> getContractAddr </button>

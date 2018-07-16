@@ -65,6 +65,27 @@ function checkTHash() {
     }
 }
 
+function uploadFileInfo() {
+    let keyword = document.getElementById("keyword").value;
+    let author = document.getElementById("author").value;
+    let year = document.getElementById("year").value;
+
+    if(keyword == undefined || author == undefined || year == undefined) {
+        alert("Please input file information.");
+        return;
+    }
+    
+    console.log("upload file info prepared");
+
+    let xhttp = getXhttp();
+    xhttp.open("POST", "/creators/fileInfo", false);    // TODO: figure out why ???
+    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhttp.send("keyword=" + keyword + "&author=" + author + "&year=" + year);
+
+    let json = xhttp.responseText;
+    console.log(json);
+}
+
 function createContract() {
     let addr1 = document.getElementById("recvAddr1").value;
     let addr2 = document.getElementById("recvAddr2").value;
