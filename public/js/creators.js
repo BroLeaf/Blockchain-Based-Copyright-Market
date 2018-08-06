@@ -3,24 +3,24 @@ var hasBlock = false;
 var hasFile = true;
 
 // create an XMLHttpRequest Object
-function getXhttp(){
-    let xhttp;
+function getXHR(){
+    let xhr;
 
     if(window.XMLHttpRequest)
-        xhttp = new XMLHttpRequest()
+        xhr = new XMLHttpRequest()
     else
-        xhttp = new ActiveXObject("Microsoft.XMLHttp")
+        xhr = new ActiveXObject("Microsoft.XMLHttp")
 
-    return xhttp;
+    return xhr;
 }
 
 // get userInfo of geth
 function getUserInfo() {
-    let xhttp = getXhttp();
-    xhttp.open("GET", "/creators/userInfo", false);
-    xhttp.send();
+    let xhr = getXHR();
+    xhr.open("GET", "/creators/userInfo", false);
+    xhr.send();
 
-    let json = xhttp.responseText;
+    let json = xhr.responseText;
     let obj = eval('(' + json + ')');
     console.log(obj);
 }
@@ -32,12 +32,12 @@ function uploadFileHash() {
         return;
     }
 
-    let xhttp = getXhttp();
-    xhttp.open("POST", "/creators/fileHash", false);
-    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhttp.send("fileHash="+fileHash);
+    let xhr = getXHR();
+    xhr.open("POST", "/creators/fileHash", false);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.send("fileHash="+fileHash);
 
-    let json = xhttp.responseText;
+    let json = xhr.responseText;
     let obj = eval('(' + json + ')');
     console.log(obj);
     latestTHash = obj.tHash;
@@ -47,12 +47,12 @@ function checkTHash() {
     if(latestTHash == undefined)
         return;
 
-    let xhttp = getXhttp();
-    xhttp.open("POST", "/creators/tHash", false);
-    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhttp.send("tHash="+latestTHash);
+    let xhr = getXHR();
+    xhr.open("POST", "/creators/tHash", false);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.send("tHash="+latestTHash);
 
-    let json = xhttp.responseText;
+    let json = xhr.responseText;
     if( json.length == 0) {
         alert("It's mining ... Please retry after a few seconds");
         return;
@@ -77,12 +77,12 @@ function uploadFileInfo() {
     
     console.log("upload file info prepared");
 
-    let xhttp = getXhttp();
-    xhttp.open("POST", "/creators/fileInfo", false);    // TODO: figure out why ???
-    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhttp.send("keyword=" + keyword + "&author=" + author + "&year=" + year);
+    let xhr = getXHR();
+    xhr.open("POST", "/creators/fileInfo", false);    // TODO: figure out why ???
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.send("keyword=" + keyword + "&author=" + author + "&year=" + year);
 
-    let json = xhttp.responseText;
+    let json = xhr.responseText;
     console.log(json);
 }
 
@@ -94,22 +94,22 @@ function createContract() {
         return
     }
 
-    let xhttp = getXhttp();
-    xhttp.open("POST", "/creators/contract", false);
-    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhttp.send("addr1=" + addr1 + "&addr2=" + addr2);
+    let xhr = getXHR();
+    xhr.open("POST", "/creators/contract", false);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.send("addr1=" + addr1 + "&addr2=" + addr2);
 
-    let json = xhttp.responseText;
+    let json = xhr.responseText;
     let obj = eval('(' + json + ')');
     console.log(obj);
 }
 
 function getContractAddr() {
-    let xhttp = getXhttp();
-    xhttp.open("GET", "/creators/contract", false);
-    xhttp.send();
+    let xhr = getXHR();
+    xhr.open("GET", "/creators/contract", false);
+    xhr.send();
 
-    let json = xhttp.responseText;
+    let json = xhr.responseText;
     if( json.length == 0) {
         alert("It's mining ... Please retry after a few seconds");
         return;

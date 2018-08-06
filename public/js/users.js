@@ -1,25 +1,25 @@
 var latestContractAddr = undefined;
 
 // create an XMLHttpRequest Object
-function getXhttp(){
-    let xhttp;
+function getXHR(){
+    let xhr;
 
     if(window.XMLHttpRequest)
-        xhttp = new XMLHttpRequest()
+        xhr = new XMLHttpRequest()
     else
-        xhttp = new ActiveXObject("Microsoft.XMLHttp")
+        xhr = new ActiveXObject("Microsoft.XMLHttp")
 
-    return xhttp;
+    return xhr;
 }
 
 function sendEth() {	
-    let xhttp = getXhttp();
+    let xhr = getXHR();
 
-    xhttp.open("POST", "/users/receiveAddr", false);
-    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhttp.send("addr=" + latestContractAddr);
+    xhr.open("POST", "/users/receiveAddr", false);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.send("addr=" + latestContractAddr);
     
-    let json = xhttp.responseText;
+    let json = xhr.responseText;
     let obj = eval('(' + json + ')');
     console.log(obj);
 }
