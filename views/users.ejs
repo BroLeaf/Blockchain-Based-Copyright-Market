@@ -1,7 +1,6 @@
 <html>
 
     <head>
-        <title><%= title %></title>
         <link rel='stylesheet' href='/css/style.css' />
         <script text="text/script" src="/js/users.js"></script>
     </head>
@@ -10,6 +9,22 @@
 
         <button onclick="sendEth()"> sendEth </button>
 
+        <h1>Search area:</h1>
+        <p>Please enter the name of works</p>
+        <form name="monquery" method="post" action="/users">
+            <input type="text" placeholder="musicname" name="musicname" />
+            <input type="submit"  value="search" />
+        </form>
+	
+        result
+
+        <ul class="Persons">
+            <% for(var i=0; i<Persons.length; i++) {%>
+            <li class="person">
+            <span><a target="_blank"href="showdetail/?musicname=<%=Persons[i].keyword%>"><%= Persons[i].keyword %></span>
+            </li>
+            <% } %>
+        </ul>
     </body>
 
 </html>

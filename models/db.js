@@ -5,10 +5,11 @@ var resp;
 
 function _dbquery(opp) {
     MongoClient.connect(url, function(err, db) {
+        console.log(opp);
         if (err) throw err;
 
         db.collection(dbCollectionName, function(err, collection) {
-            collection.find({musicName:opp}).toArray(function(err,items){
+            collection.find({keyword: opp}).toArray(function(err, items){
                 if(err) throw err;
                 // console.log(items);
                 console.log("We found " + items.length + " results!");
