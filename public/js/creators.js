@@ -17,7 +17,7 @@ function getXhttp(){
 // get userInfo of geth
 function getUserInfo() {
     let xhttp = getXhttp();
-    xhttp.open("GET", "/userInfo", false);
+    xhttp.open("GET", "/creators/userInfo", false);
     xhttp.send();
 
     let json = xhttp.responseText;
@@ -33,7 +33,7 @@ function uploadFileHash() {
     }
 
     let xhttp = getXhttp();
-    xhttp.open("POST", "/fileHash", false);
+    xhttp.open("POST", "/creators/fileHash", false);
     xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhttp.send("fileHash="+fileHash);
 
@@ -48,7 +48,7 @@ function checkTHash() {
         return;
 
     let xhttp = getXhttp();
-    xhttp.open("POST", "/tHash", false);
+    xhttp.open("POST", "/creators/tHash", false);
     xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhttp.send("tHash="+latestTHash);
 
@@ -95,7 +95,7 @@ function createContract() {
     }
 
     let xhttp = getXhttp();
-    xhttp.open("POST", "/contract", false);
+    xhttp.open("POST", "/creators/contract", false);
     xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhttp.send("addr1=" + addr1 + "&addr2=" + addr2);
 
@@ -106,7 +106,7 @@ function createContract() {
 
 function getContractAddr() {
     let xhttp = getXhttp();
-    xhttp.open("GET", "/contract", false);
+    xhttp.open("GET", "/creators/contract", false);
     xhttp.send();
 
     let json = xhttp.responseText;

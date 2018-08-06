@@ -15,7 +15,7 @@ function getXhttp(){
 function sendEth() {	
     let xhttp = getXhttp();
 
-    xhttp.open("POST", "/receiveAddr", false);
+    xhttp.open("POST", "/users/receiveAddr", false);
     xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhttp.send("addr=" + latestContractAddr);
     
