@@ -57,23 +57,6 @@ router.get('/contract', function(req, res, next) {
     res.send(resp);
 })
 
-router.post('/receiveAddr', function(req, res, next) {
-    let dest = req.body.addr;
-    if(dest == undefined)
-        res.send("addr does not exist.");
-
-    geth.sendEth(dest)
-    .then( tHash => {
-        // console.log("tHash in route:  " + tHash);
-        res.send({
-            tHash: tHash
-        });
-    })
-    .catch( err => {
-        console.log(err);
-    });
-})
-
 router.post('/fileInfo', function(req, res, next) {
     keyword = req.body.keyword;
     author = req.body.author;
