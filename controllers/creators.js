@@ -46,7 +46,7 @@ router.post('/contract', function(req, res, next) {
     let addr2 = req.body.addr2;
     console.log(addr1, addr2);
 
-    let resp = geth.createContract();
+    let resp = geth.createContract(addr1, addr2);
     res.send(resp);
 })
 

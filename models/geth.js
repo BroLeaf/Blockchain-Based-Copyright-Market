@@ -60,13 +60,15 @@ function _checkTHash(tHash) {
     return resp;
 }
 
-function _createContract() {
+function _createContract(addr1, addr2) {
     unlockAdminAccout();
 
     // compile contract
-    let source = fs.readFileSync("./data/contracts/simpleContract.sol", 'utf8');
+    let str = fs.readFileSync("./data/contracts/simpleContract.sol", 'utf8');
     console.log('compiling contract...');
-    let compiledContract = solc.compile(source);
+    str = str.replace("0x123", addr1);
+    str = str.replace("0x456", addr2);
+    let compiledContract = solc.compile(str);
     console.log('done');
     for (let contractName in compiledContract.contracts) {
         var bytecode = compiledContract.contracts[contractName].bytecode;

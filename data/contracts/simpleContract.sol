@@ -2,8 +2,8 @@ pragma solidity ^0.4.0;
 
 contract Receiver {
 
-    address constant public clientA = 0x22F5F11906830AE59518BDC424197c331614C1D7;
-    address constant public clientB = 0xB8f681A88977c4e498aB3Bb228FEE77E90af1207;
+    address constant public clientA = 0x123;
+    address constant public clientB = 0x456;
 
     // construtor 
     function Receiver() public {
