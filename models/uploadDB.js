@@ -66,7 +66,7 @@ module.exports={
 		
 		var newprofile=profile.IDc.concat("\n", Kp, "\n", Ksign, "\n", TS, "\n", TK, "\n\n", EID, "\n", EK, "\n");
 		var dfd = Q.defer();
-		fs.writeFile('./makaDB.card', newprofile,'utf8',(err) => {
+		fs.writeFile('./data/makaDB.card', newprofile,'utf8',(err) => {
 			if (err)
 			dfd.reject('[Server error] generateCard fail');
 			dfd.resolve('new card success!!');
@@ -83,7 +83,7 @@ module.exports={
 	loadcard : function(){
 		var result = [];
 		var dfd = Q.defer();
-		fs.readFile('./makaDB.card', 'utf8',(err, data) => {
+		fs.readFile('./data/makaDB.card', 'utf8',(err, data) => {
 			if (err) throw err;			
 			
 			//console.log(data);
