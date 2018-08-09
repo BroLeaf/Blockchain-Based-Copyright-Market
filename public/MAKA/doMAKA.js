@@ -49,7 +49,7 @@ MAKA.prototype = {
 
         var makaObj = this;
 		
-        ekd("/maka", this.profile.IDc, this.profile.TS, this.profile.TK, function(sk, ts, tk) {
+        ekd("/login/maka", this.profile.IDc, this.profile.TS, this.profile.TK, function(sk, ts, tk) {
             if (sk.length == 0) {
                 dfd.resolve(MAKA.INVALID_CARD);
                 return;

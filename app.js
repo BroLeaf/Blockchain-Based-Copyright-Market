@@ -78,14 +78,6 @@ app.get('/download',function(req,res){
 		res.sendStatus(404);
 	}
 })
-app.get('/index.html', function (req, res) {
-    console.log(__dirname);
-	if(ServerState=="STABLE"){
-		res.sendFile( __dirname + "/" + "index.html" );
-	}else{
-		res.sendStatus(404);
-	}
-})
 app.get('/download.html', function (req, res) {
 	if(ServerState=="STABLE"){
 		res.sendFile( __dirname + "/" + "download.html" );
@@ -100,48 +92,6 @@ app.get('/upload.html', function (req, res) {
 		res.sendStatus(404);
 	}
 }) 
-app.post('/maka', function (req, res) {
-	if(ServerState=="STABLE"){
-        var data = querystring.stringify(req.body);
-		var ssn = req.session;
-        ssn.idc=req.body.idc;
-		var options = {
-			host: '127.0.0.1',
-			port: 8080,
-			path: '/ACS_JSP/maka.jsp',
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded',
-				'Content-Length': Buffer.byteLength(data)
-			}
-        };
-        console.log(3);
-		var httpreq = http.request(options, function (response) {
-			response.setEncoding('utf8');
-			response.on('data', function (chunk) {
-				var obj = JSON.parse(chunk);
-				var resend=JSON.stringify({
-					result:obj.result,
-					IDs:obj.IDs,
-					Nx:obj.Nx,
-					V4:obj.V4,
-					TS:obj.TS
-				});
-				if(obj.result==true){
-					var sk= new Uint8Array(new Buffer(obj.SK,"hex"));
-					ssn.sk=JSON.stringify(Array.apply([], sk));
-				}
-				res.send(resend);
-			});
-		});
-		httpreq.write(data);
-        httpreq.end();
-        console.log(4);
-
-	}else{
-		res.sendStatus(404);
-	}
-})
 
 // settting header
 app.use(function(req, res, next) {
@@ -217,6 +167,11 @@ serv_io.sockets.on('connection', function(socket) {
         console.log(uploadDB == undefined);
 		filesock.sock_recv(socket,loginObj,uploadDB);
 	}
-});	
+});
 
+function getServerState(){
+    return ServerState;
+}
+
+module.exports.getServerState = getServerState;
 module.exports = app;

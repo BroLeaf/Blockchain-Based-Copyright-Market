@@ -20,7 +20,7 @@ module.exports={
 		socket.on('slice upload', (data) => { 
 			
 			var tmp = JSON.parse(crypt.HELPER_DecryptString(data.data,sessionKey));			
-			var dir = __dirname+"/../data/storage/"+tmp.id;
+			var dir = __dirname+"/../data/tmpFile/"+tmp.id;
 			var filename = data.timestamp+"_"+data.name;
 			path=dir+"/"+filename;
 			
