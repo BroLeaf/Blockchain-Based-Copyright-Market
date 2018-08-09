@@ -1,53 +1,66 @@
 var crypt = require('./usage');
 var fs = require("fs");
 module.exports={
-	sock_recv : function(socket){
+	sock_recv : function(socket,loginObj,uploadDB){
+		
 		var sessionKey = JSON.parse(socket.handshake.session.sk);
 		sessionKey = new Uint8Array(sessionKey);
-
+		
 		var files = {}, 
 		struct = { 
 			name: null, 
 			type: null, 
-			size: 0, 
-			data: [], 
-			slice: 0, 
+			size: 0,
+			data: [],
+			slice: 0 
 		};
 		
+		var path,name;
+		var t1,t2;
 		socket.on('slice upload', (data) => { 
 			
-			if (!files[data.name]) { 
-				files[data.name] = Object.assign({}, struct, data); 
-				files[data.name].data = []; 
-			}
-			var tmp=JSON.parse(crypt.HELPER_DecryptString(data.data,sessionKey));
-			var recv = new Buffer(tmp.data); 
-			//save the data 
-			files[data.name].data.push(recv);
-			files[data.name].slice++;
+			var tmp = JSON.parse(crypt.HELPER_DecryptString(data.data,sessionKey));			
+			var dir = __dirname+"/../data/storage/"+tmp.id;
+			var filename = data.timestamp+"_"+data.name;
+			path=dir+"/"+filename;
 			
-			if (files[data.name].slice * 100000 >= files[data.name].size) {
-				console.log(data.name);
-				var fileBuffer = Buffer.concat(files[data.name].data); 
-				fs.writeFile(__dirname +'/../data/storage/'+data.name, fileBuffer, (err) => { 
-					delete files[data.name]; 
-					if (err) 
-					{
+			if (!fs.existsSync(dir)){
+				fs.mkdirSync(dir);
+			}				
+			if (!files[filename]) { 
+				files[filename] = Object.assign({}, struct, data);
+				files[filename].data=[];
+				t1=new Date().getTime();
+			}
+			
+			var filechunk = new Buffer(tmp.data);
+			files[filename].data.push(filechunk);
+			files[filename].slice++;
+			
+			if (files[filename].slice * 100000 >= files[filename].size) {
+				var fileBuffer = Buffer.concat(files[filename].data); 
+				fs.writeFile(path, fileBuffer, (err) => { 
+					delete files[filename]; 
+					if (err){
 						console.log(err);
 						return socket.emit('upload error');
 					}
-					console.log("fwrite finish");
+					name=data.name;
+					t2=new Date().getTime();
 					socket.emit('end upload');
 				});
 			} else { 
 				socket.emit('request slice upload', { 
-					currentSlice: files[data.name].slice 
+					currentSlice: files[filename].slice 
 				}); 
 			}
 		});
-		socket.on('end', function(){
+		socket.on('end', function (){
+			console.log("[total time]: "+(t2-t1));
 			console.log("socket end");
 			socket.disconnect(0);
-		})
+			console.log(uploadDB);
+			uploadDB._uploadFile(loginObj,path,name);
+		});		
 	}
 };
