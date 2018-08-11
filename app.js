@@ -3,7 +3,19 @@ var bodyParser = require('body-parser');
 var createError = require('http-errors');
 var cookieParser = require('cookie-parser');
 var express = require('express');
+var querystring = require('querystring');
+var http = require('http');
+
+
+
 var filesock = require('./models/filesock');
+var uploadDB = require('./models/uploadDB');
+var util=require('./models/Utility');
+var pfcctr=require('./models/PFCCTR');
+var Serverdownload = require('./models/ServerDownload');
+var loginObj;
+var ServerState = "UNSTABLE";
+
 var io = require('socket.io');
 var logger = require('morgan');
 var path = require('path');
@@ -70,9 +82,42 @@ app.use(function(err, req, res, next) {
 
 // server port and io
 var server = app.listen(8081, function () {
-	let host = server.address().address
-	let port = server.address().port
-	console.log("Server start http://%s:%s", host, port)
+	// let host = server.address().address
+	// let port = server.address().port
+    // console.log("Server start http://%s:%s", host, port)
+    console.log("start login cloudDB.........");
+	uploadDB.loadcard()
+	.then(function(result){
+		//	console.log(result);
+		loginObj={
+			profile:result,
+			userID:result.IDc,
+			userKey:util.UTILS_HexStringToIntArray(result.Kp),
+			keywordKey:null,
+			proxySk:null,
+			serverSk:null,
+		};
+		return uploadDB._makaWithProxy(loginObj);
+	}).then(function(isSuccess){
+		console.log(isSuccess);
+		return uploadDB._makaWithServer(loginObj);
+	}).then(function(isSuccess){
+		console.log(isSuccess);
+		return uploadDB._login(loginObj);
+	}).then(function(isSuccess){
+		console.log(isSuccess);
+		return uploadDB.generateCard(loginObj.profile);
+	}).then(function(isSuccess){
+		console.log(isSuccess);
+		console.log("finish login cloudDB.........");
+		ServerState = "STABLE";
+		let host = server.address().address
+		let port = server.address().port
+		console.log("Server start http://%s:%s", host, port);
+	}).catch(function (error) {
+		console.log(error);
+		process.exit();
+	});
 });
 
 var serv_io = io.listen(server);
@@ -80,7 +125,21 @@ var serv_io = io.listen(server);
 serv_io.use(sharedsession(session, { autoSave:true }));
 
 serv_io.sockets.on('connection', function(socket) {
-	filesock.sock_recv(socket);
+    console.log(typeof filesock);
+	if(ServerState=="STABLE"){
+        console.log(uploadDB == undefined);
+		filesock.sock_recv(socket,loginObj,uploadDB);
+	}
 });
 
+function getServerState(){
+    return ServerState;
+}
+
+function getLoginObject() {
+    return loginObj;
+}
+
+module.exports.getServerState = getServerState;
+module.exports.getLoginObject = getLoginObject;
 module.exports = app;

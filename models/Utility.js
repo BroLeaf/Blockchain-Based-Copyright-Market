@@ -1,4 +1,3 @@
-var asm=require("asmcrypto.js");
 module.exports={
 	UTILS_ArrayBufferToIntArray:function (buf) {
 		var uint8arr = new Uint8Array(buf);
@@ -29,11 +28,13 @@ module.exports={
 	},
 
 	UTILS_IntArrayToString:function (arr) {
-		return asm.bytes_to_string(arr, true);
+		//return asm.bytes_to_string(arr, true);
+		return new Buffer(arr).toString();
 	},
 
 	UTILS_IntArrayToHexString:function (arr) {
-		return asm.bytes_to_hex(arr);
+		//return asm.bytes_to_hex(arr);
+		return new Buffer(arr).toString('hex');
 	},
 
 	UTILS_IntArrayToWordArray:function (arr) {
@@ -58,19 +59,23 @@ module.exports={
 	},
 
 	UTILS_StringToIntArray:function (str) {
-		return asm.string_to_bytes(str, true);
+		//return asm.string_to_bytes(str, true);
+		return new Uint8Array(new Buffer(str,"utf8"));
 	},
 
 	UTILS_StringToHexString:function (str) {
-		return asm.bytes_to_hex(asm.string_to_bytes(str, true));
+		//return asm.bytes_to_hex(asm.string_to_bytes(str, true));
+		return new Buffer(str,"utf8").toString('hex');
 	},
 
 	UTILS_HexStringToIntArray:function (str) {
-		return asm.hex_to_bytes(str);
+		//return asm.hex_to_bytes(str);
+		return new Uint8Array(new Buffer(str,"hex"));
 	},
 
 	UTILS_HexStringToWordArray:function (str) {
-		return UTILS_IntArrayToWordArray(asm.hex_to_bytes(str));
+	//	return UTILS_IntArrayToWordArray(asm.hex_to_bytes(str));
+		return UTILS_IntArrayToWordArray(module.exports.UTILS_HexStringToIntArray(str));
 	},
 
 	UTILS_ConcatIntArray:function () {

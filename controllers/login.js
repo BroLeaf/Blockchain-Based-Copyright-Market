@@ -1,3 +1,4 @@
+var app = require('../app')
 var express = require('express');
 var router = express.Router();
 var querystring = require('querystring');
@@ -11,37 +12,53 @@ var util = require('../models//Utility');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-    res.render('login', { title: 'For Login' });
+
+	// console.log(app);
+	if(app.getServerState() == "STABLE") {
+		res.render('login');
+	} else {
+		res.sendStatus(404);
+	}
 });
 
 router.post('/maka', function (req, res) {
-	console.log("in controller/login.js post maka");
-	var data = querystring.stringify(req.body);
-	ssn = req.session;
-	ssn.idc = req.body.idc;
-	var options = {
-		host: '127.0.0.1',
-		port: 8080,
-		path: '/ACS_JSP/maka.jsp',
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded',
-			'Content-Length': Buffer.byteLength(data)
-		}
-	};
-	console.log("... 1");
-	var httpreq = http.request(options, function (response) {
-		response.setEncoding('utf8');
-		response.on('data', function (chunk) {
-			var obj = JSON.parse(chunk);
-			var sk= util.UTILS_HexStringToIntArray(obj.SK);
-			ssn.sk=JSON.stringify(Array.apply([], sk));
-			res.send(chunk);
+	if(app.getServerState() != "STABLE") {
+		res.sendStatus(404);
+	} else {
+		let data = querystring.stringify(req.body);
+		var ssn = req.session;
+        ssn.idc=req.body.idc;
+		var options = {
+			host: '127.0.0.1',
+			port: 8080,
+			path: '/ACS_JSP/maka.jsp',
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'Content-Length': Buffer.byteLength(data)
+			}
+        };
+		var httpreq = http.request(options, function (response) {
+			response.setEncoding('utf8');
+			response.on('data', function (chunk) {
+				var obj = JSON.parse(chunk);
+				var resend=JSON.stringify({
+					result:obj.result,
+					IDs:obj.IDs,
+					Nx:obj.Nx,
+					V4:obj.V4,
+					TS:obj.TS
+				});
+				if(obj.result==true){
+					var sk= new Uint8Array(new Buffer(obj.SK,"hex"));
+					ssn.sk=JSON.stringify(Array.apply([], sk));
+				}
+				res.send(resend);
+			});
 		});
-	});
-	console.log("... 2");
-	httpreq.write(data);
-	httpreq.end();
+		httpreq.write(data);
+        httpreq.end();
+	}
 });
 
 module.exports = router;

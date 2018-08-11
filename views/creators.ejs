@@ -1,5 +1,21 @@
 <html>
 
+    <style>
+        #myProgress {
+            width: 50%;
+            background-color: #ddd;
+        }
+        
+        #myBar {
+            width: 0%;
+            height: 30px;
+            background-color: #4CAF50;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+        }
+    </style>
+    
     <head>
         <title><%= title %></title>
         <link rel='stylesheet' href='/css/style.css' />
@@ -48,6 +64,9 @@
                     <input type="file" name="stream">
                     <input type="button" data-inline="true" value="upload" id="filesubmit" onclick="uploadfile(); hasFile=true;">
                 </form>
+                <div id="myProgress">
+                    <div id="myBar"> 0% </div>
+                </div> 
                 <p></p>
 
                 File Information ... <br>
@@ -96,7 +115,7 @@
         <script src="/MAKA/loadCard.js"></script>
         <script src="/MAKA/usage.js"></script>
         <script src="/socket.io/socket.io.js"></script>
-        <script src="/js/uploadFile.js"></script>
+        <script src="/js/upload.js"></script>
     </body>
 
 </html>
