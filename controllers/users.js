@@ -56,19 +56,12 @@ router.post('/', function(req,res){
 })
 
 router.get('/download',function(req,res){
-    console.log("hello");
 	if(app.getServerState() == "STABLE"){
         let keyword=req.query.keyword;
 		let slice=req.query.slice;
         let ssn = req.session;
-        console.log(keyword);
-        console.log(slice);
-        console.log(ssn);
         let loginObj = app.getLoginObject();
-        console.log(loginObj);
-        //ask for file chunk
-        console.log("before DownloadFile()");
-        console.log(Serverdownload);
+
         Serverdownload.DownloadFile(loginObj.userID,loginObj.userKey, loginObj.serverSk,loginObj.proxySk,loginObj.keywordKey, keyword,uploadDB.getCookie(),slice,ssn,function(data) {
             res.writeHead(200, {"Content-Type": "text/plain;charset=utf-8"});
             res.end(data);

@@ -59,8 +59,8 @@ module.exports={
 			console.log("[total time]: "+(t2-t1));
 			console.log("socket end");
 			socket.disconnect(0);
-			console.log(uploadDB);
+			// console.log(uploadDB);
 			uploadDB._uploadFile(loginObj,path,name);
-		});		
+		});
 	}
 };
