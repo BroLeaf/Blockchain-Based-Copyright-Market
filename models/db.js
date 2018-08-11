@@ -1,15 +1,17 @@
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://127.0.0.1:27017/demo0716";
+var url = "mongodb://127.0.0.1:27017/demo0811";
 var dbCollectionName = "works"
 var resp;
 
 function _dbquery(opp) {
+
+    // console.log(opp);
+
     MongoClient.connect(url, function(err, db) {
-        console.log(opp);
         if (err) throw err;
 
         db.collection(dbCollectionName, function(err, collection) {
-            collection.find({keyword: opp}).toArray(function(err, items){
+            collection.find({type: opp}).toArray(function(err, items){
                 if(err) throw err;
                 // console.log(items);
                 console.log("We found " + items.length + " results!");
@@ -27,15 +29,15 @@ function _dbquery(opp) {
     });
 }
 
-function _dbinsert(keyword, author, year) {
+function _dbinsert(type, auth, year) {
     MongoClient.connect(url, function(err, db) {	
         if (err) throw err;
 
         db.collection(dbCollectionName, function(err, collection) {
             collection.insert({
-                keyword: keyword,
-                author:author,
-                year:year
+                type: type,
+                auth: auth,
+                year: year
             });
             
             collection.count(function(err,count){
