@@ -9,6 +9,12 @@ window.onload = function() {
         if(e.keyCode == 13) {
             uploadFileHash();
         }
+    });
+
+    document.getElementById("filesubmit").addEventListener("click", () => {
+        uploadfile();
+        hasFile=true;
+        uploadFileHash();
     })
 
     let _ = setTimeout(function() {
