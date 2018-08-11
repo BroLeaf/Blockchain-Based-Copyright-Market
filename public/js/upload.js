@@ -31,11 +31,20 @@ function uploadfile(){
         var place = data.currentSlice * 100000, 
             slice = file.slice(place, place + Math.min(100000, file.size - place)); 
         
+        updateProgressBar(data.currentSlice,total_slice);
         fileReader.readAsArrayBuffer(slice); 
     });
     socket.on('end upload', (data) => {
             
         console.log('end upload');
+        updateProgressBar(total_slice,total_slice);
         socket.emit('end');
     });
+}
+
+function updateProgressBar(cur,total){
+	let elem = document.getElementById("myBar");   
+	let width = Math.ceil((cur/total)*100);
+	elem.style.width = width + '%';
+	elem.innerHTML = width * 1 + '%';
 }

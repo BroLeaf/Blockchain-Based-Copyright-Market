@@ -56,43 +56,6 @@ app.use('/creators', creatorsRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 
-app.get('/download',function(req,res){
-	if(ServerState=="STABLE"){
-		let keyword=req.query.keyword;
-		let slice=req.query.slice;
-		let ssn = req.session;
-		if(slice==null){
-			//ask for file size
-			Serverdownload.DownloadFile(loginObj.userID,loginObj.userKey, loginObj.serverSk,loginObj.proxySk,loginObj.keywordKey, keyword,uploadDB.getCookie(),0,ssn,function(data) {
-				res.writeHead(200, {"Content-Type": "text/plain;charset=utf-8"});
-				res.end(data);
-			});
-		}else{
-			//ask for file chunk
-			Serverdownload.DownloadFile(loginObj.userID,loginObj.userKey, loginObj.serverSk,loginObj.proxySk,loginObj.keywordKey, keyword,uploadDB.getCookie(),slice,ssn,function(data) {
-				res.writeHead(200, {"Content-Type": "text/plain;charset=utf-8"});
-				res.end(data);
-			});
-		}
-	}else{
-		res.sendStatus(404);
-	}
-})
-app.get('/download.html', function (req, res) {
-	if(ServerState=="STABLE"){
-		res.sendFile( __dirname + "/" + "download.html" );
-	}else{
-		res.sendStatus(404);
-	}
-})
-app.get('/upload.html', function (req, res) {
-	if(ServerState=="STABLE"){
-		res.sendFile( __dirname + "/" + "upload.html" );
-	}else{
-		res.sendStatus(404);
-	}
-}) 
-
 // settting header
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -173,5 +136,10 @@ function getServerState(){
     return ServerState;
 }
 
+function getLoginObject() {
+    return loginObj;
+}
+
 module.exports.getServerState = getServerState;
+module.exports.getLoginObject = getLoginObject;
 module.exports = app;

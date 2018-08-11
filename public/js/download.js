@@ -2,7 +2,7 @@ window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileS
 function download(){
 	let keyword = "No.0";
 	$.ajax({
-		url: "/download?keyword=" + keyword,
+		url: "/users/download?slice=0&keyword=" + keyword,
 		type: "GET"
 	}).done(function(chunk) {
 		let obj = JSON.parse(chunk);
@@ -14,7 +14,7 @@ function pushAjaxRequest(cur, slice, filename, size, keyword) {
 	console.log(cur);
 	
 	$.ajax({
-		url: "/download?slice=" + cur + "&keyword=" + keyword,
+		url: "/users/download?slice=" + cur + "&keyword=" + keyword,
 		type: "GET",
 	}).done(function(chunk) {
 		let obj = JSON.parse(chunk);

@@ -1,3 +1,4 @@
+var app = require('../app')
 var express = require('express');
 var router = express.Router();
 var geth = require('../models/geth.js');
@@ -5,7 +6,11 @@ var db = require("../models/db.js");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('creators', { title: 'For Creators' });
+    if(app.getServerState() != "STABLE") {
+        res.sendStatus(404);
+    } else {
+        res.render('creators', { title: 'For Creators' });
+    }
 });
 
 // get userInfo
