@@ -1,21 +1,5 @@
 <html>
 
-    <style>
-        #myProgress {
-            width: 50%;
-            background-color: #ddd;
-        }
-        
-        #myBar {
-            width: 0%;
-            height: 30px;
-            background-color: #4CAF50;
-            text-align: center;
-            line-height: 30px;
-            color: white;
-        }
-    </style>
-    
     <head>
         <title><%= title %></title>
         <link rel='stylesheet' href='/css/style.css' />
@@ -24,87 +8,66 @@
 
     <body>
 
-		<!-- First -->
-        <section id="first" class="fullpage">
+    <div id="regForm">
 
-            <header class="page_header">
-                <h1> Step 1: submit file hash </h1>
-            </header>
+        <!-- step 1-->
+        <div class="tab">
+            
+            <h1>Step 1. submit file hash</h1>
+            <h1>(check button is option)</h1>
+            <input id="fileHash" type="text" placeholder="hash of file"><br>
+            <button onclick="checkTHash()"> check </button>
+            <button onclick="nextPrev(1)" style="float:right">Next</button>
+        
+        </div>
 
-            <div class="page_content">
-                <!--
-                <button onclick="getUserInfo()"> getUserInfo </button><br>
-                <p></p>
-                -->
+        <!-- step 2 -->
+        <div class="tab">
+            
+            <h1>Step 2. describe file</h1>
+            <input id="type" type="text" placeholder="type"><br>
+            <input id="auth" type="text" placeholder="auth"><br>
+            <input id="year" type="text" placeholder="year"><br>
+            <button onclick="nextPrev(1)" style="float:right">Next</button>
 
-                File Hash:
-                <input id="fileHash" type="text" placeholder="0x123">
-                <button onclick="uploadFileHash()"> submit </button>
-                <p></p>
+        </div>
 
-                <button onclick="checkTHash()"> checkTHash </button>
+        <!-- step 3 -->
+        <div class="tab">
+
+            <h1>Step 3. upload file</h1>
+            <form action="./file_upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="stream">
+                <input type="button" data-inline="true" value="upload" id="filesubmit" onclick="uploadfile(); hasFile=true; uploadFileHash();">
+            </form>
+            <div id="myProgress">
+                <div id="myBar"> 0% </div>
             </div>
+            <button onclick="nextPrev(1)" style="float:right">Next</button>
 
-            <footer class="page_footer">
-                <a onclick="gotoStep2();">go to step2</a>
-            </footer>
+        </div>
 
-        </section>
+        <!-- Step 4 -->
+        <div class="tab">
 
-		<!-- Second -->
-        <section id="second" class="fullpage">
+            <h1>Step 4. Create smart contract</h1>
+            <h1>(if no need, just click finish)</h1>
+            <input id="recvAddr1" type="text" placeholder="0x123"><br>
+            <input id="recvAddr2" type="text" placeholder="0x123"><br>
+            <button onclick="createContract()"> create </button>
+            <button onclick="nextPrev(1)" style="float:right">Finish</button>
+        
+        </div>
 
-            <header class="page_header">
-                <h1> Step 2: upload file </h1>
-            </header>
+          <!-- Circles which indicates the steps of the form: -->
+        <div style="text-align:center;margin-top:40px;">
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+            <span class="step"></span>
+        </div>
 
-            <div class="page_content">
-                Choose a file: <br />
-                <form action="./file_upload" method="post" enctype="multipart/form-data">
-                    <input type="file" name="stream">
-                    <input type="button" data-inline="true" value="upload" id="filesubmit" onclick="uploadfile(); hasFile=true;">
-                </form>
-                <div id="myProgress">
-                    <div id="myBar"> 0% </div>
-                </div> 
-                <p></p>
-
-                File Information ... <br>
-                keyword: <input id="keyword" type="text" placeholder="0x123"><br>
-                author:  <input id="author" type="text" placeholder="0x123"><br>
-                year:    <input id="year" type="text" placeholder="0x123"><br>
-                <button onclick="uploadFileInfo()"> submit </button>
-                <p></p>
-
-            </div>
-
-            <footer class="page_footer">
-                <a onclick="gotoStep3();">go to step3</a>
-            </footer>
-
-        </section>
-
-		<!-- Third -->
-        <section id="third" class="fullpage">
-
-            <header class="page_header">
-                <h1> Step 3. create smart contract</h1>
-            </header>
-
-            <div class="page_content">
-                Receiver Address:<br>
-                <input id="recvAddr1" type="text" placeholder="0x123"><br>
-                <input id="recvAddr2" type="text" placeholder="0x123"><br>
-                <button onclick="createContract()"> createContract </button><p>
-
-                <button onclick="getContractAddr()"> getContractAddr </button>
-            </div>
-
-            <footer class="page_footer">
-                <a href="/">back to Home</a>
-            </footer>
-
-        </section>
+    </form>
 
         <script src="/js/jquery-3.1.1.min.js"></script>
         <script src="/js/asmcrypto.js"></script>

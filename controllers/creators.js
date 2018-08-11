@@ -63,12 +63,12 @@ router.get('/contract', function(req, res, next) {
 })
 
 router.post('/fileInfo', function(req, res, next) {
-    keyword = req.body.keyword;
-    author = req.body.author;
+    type = req.body.type;
+    auth = req.body.auth;
     year = req.body.year;
     console.log("in router post fileInfo");
     
-    db.dbinsert(keyword, author, year);
+    db.dbinsert(type, auth, year);
     res.send("Insert success.");
 })
 

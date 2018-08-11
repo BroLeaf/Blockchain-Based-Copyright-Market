@@ -1,6 +1,20 @@
 var latestTHash;
 var hasBlock = false;
 var hasFile = true;
+var currentTab = 0;
+
+window.onload = function() {
+
+    document.getElementById("fileHash").addEventListener("keydown", (e) => {
+        if(e.keyCode == 13) {
+            uploadFileHash();
+        }
+    })
+
+    let _ = setTimeout(function() {
+        showTab(currentTab); // Display the crurrent tab
+    }, 100);
+}
 
 // create an XMLHttpRequest Object
 function getXHR(){
@@ -39,7 +53,7 @@ function uploadFileHash() {
 
     let json = xhr.responseText;
     let obj = eval('(' + json + ')');
-    console.log(obj);
+    // console.log(obj);
     latestTHash = obj.tHash;
 }
 
@@ -66,21 +80,19 @@ function checkTHash() {
 }
 
 function uploadFileInfo() {
-    let keyword = document.getElementById("keyword").value;
-    let author = document.getElementById("author").value;
+    let type = document.getElementById("type").value;
+    let auth = document.getElementById("auth").value;
     let year = document.getElementById("year").value;
+    // TODO: let ID = uploadDB.getID(); 
 
-    if(keyword == undefined || author == undefined || year == undefined) {
-        alert("Please input file information.");
-        return;
-    }
+    if(type == undefined) type = "none";
+    if(auth == undefined) auth = "none";
+    if(year == undefined) year = "none";
     
-    console.log("upload file info prepared");
-
     let xhr = getXHR();
-    xhr.open("POST", "/creators/fileInfo", false);    // TODO: figure out why ???
+    xhr.open("POST", "/creators/fileInfo", false);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhr.send("keyword=" + keyword + "&author=" + author + "&year=" + year);
+    xhr.send("type=" + type + "&auth=" + auth + "&year=" + year);
 
     let json = xhr.responseText;
     console.log(json);
@@ -119,24 +131,29 @@ function getContractAddr() {
     alert("contract address is " + json);
 }
 
-function gotoStep2() {
-    if(hasBlock == false) {
-        alert("Please check tHash first");
-        return;
-    }
-
-    let a = document.createElement('a');
-    a.href = "#second";
-    a.click();
+function showTab(n) {
+    var x = document.getElementsByClassName("tab");
+    x[n].style.display = "block";
+    fixStepIndicator(n)
 }
 
-function gotoStep3() {
-    if(hasFile == false) {
-        alert("Please upload file first");
-        return;
+function nextPrev(n) {
+    var x = document.getElementsByClassName("tab");
+    x[currentTab].style.display = "none";
+    currentTab = currentTab + n;
+    if (currentTab >= x.length) {
+        alert("Finish !");
+        let a = document.createElement('a');
+        a.href = "/";
+        a.click();
     }
+    showTab(currentTab);
+}
 
-    let a = document.createElement('a');
-    a.href = "#third";
-    a.click();
+function fixStepIndicator(n) {
+    var i, x = document.getElementsByClassName("step");
+    for (i = 0; i < x.length; i++) {
+        x[i].className = x[i].className.replace(" active", "");
+    }
+    x[n].className += " active";
 }
