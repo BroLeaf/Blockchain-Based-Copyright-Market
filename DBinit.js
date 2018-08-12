@@ -25,5 +25,15 @@ MongoClient.connect(url, function(err, db) {
         });
     });
 
+    // find 1997 for test
+    db.collection('works', function(err, col) {
+
+        col.find({}, {year: new RegExp('1')}).toArray(function(err, items){
+            if(err) throw err;
+            // console.log(items);
+            console.log("We found " + items.length + " results!");
+        });
+    });
+
     db.close();
 });
