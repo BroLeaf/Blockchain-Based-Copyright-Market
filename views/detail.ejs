@@ -5,7 +5,7 @@
 	<body >  
 		<ul class="Persons">
 			<li class="person">
-				<h1>See the detail of <%= Persons[0].musicName%> </h1>
+				<h1>See the detail</h1>
 				<table border="1">
 					<tr>
 						<td  bgcolor="LightSteelBlue"><span>type:</td><td width=150><%= Persons[0].type%></span><br></td>
@@ -16,6 +16,9 @@
 					<tr>
 						<td  bgcolor="LightSteelBlue"><span>year:</td><td width=150><%= Persons[0].year %></span><br></td>
 					</tr>
+					<tr>
+						<td  bgcolor="LightSteelBlue"><span>addr:</td><td width=150><%= Addr %></span><br></td>
+					</tr>
 				</table>
 			</li>
 			<button onclick="sendEth()"> sendEth </button>
@@ -25,7 +28,13 @@
 		<script>
 			function download(){
 				let keyword = "<%= Persons[0].keyword %>";
-				keywordFinish(keyword);
+
+				if(isSent() == true) {
+					keywordFinish(keyword);
+				}
+				else {
+					alert("please send money to get the file");
+				}
 			}
 		</script>
 		<script src="/js/jquery-3.1.1.min.js"></script>

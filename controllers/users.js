@@ -88,7 +88,7 @@ router.get('/detail', function(req, res) {
     .then( (resp) => {
         // console.log("======");
         // console.log(resp);
-        res.render('detail.ejs',{ Persons: resp });
+        res.render('detail.ejs',{ Persons: resp, Addr: geth.getLatestContract() });
     })
     .catch( (err) => {
         console.log(err);
