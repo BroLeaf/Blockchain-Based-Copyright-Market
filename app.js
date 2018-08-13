@@ -14,6 +14,7 @@ var util=require('./models/Utility');
 var pfcctr=require('./models/PFCCTR');
 var Serverdownload = require('./models/ServerDownload');
 var db = require('./models/db');
+var geth = require('./models/geth');
 var loginObj;
 var ServerState = "UNSTABLE";
 
@@ -119,6 +120,8 @@ var server = app.listen(8081, function () {
 		console.log(error);
 		process.exit();
 	}).done();
+
+	geth.unlockAdminAccount();
 });
 
 var serv_io = io.listen(server);

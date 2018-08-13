@@ -6,7 +6,7 @@ var fs = require('fs');
 var solc = require('solc');
 var latestContractAddr;
 
-function unlockAdminAccout() {
+function unlockAdminAccount() {
     let adminAccout = web3.eth.accounts[0];
     if(web3.personal.unlockAccount(adminAccout, "password1")) {
         console.log(`admin account is unlocked`);
@@ -30,7 +30,7 @@ function _getUserInfo(){
 }
 
 function _uploadFileHash(fileHash) {
-    unlockAdminAccout();
+    unlockAdminAccount();
     let adminAccount = web3.eth.accounts[0];
     let tHash;
     
@@ -61,7 +61,7 @@ function _checkTHash(tHash) {
 }
 
 function _createContract(addr1, addr2) {
-    unlockAdminAccout();
+    unlockAdminAccount();
 
     // compile contract
     let str = fs.readFileSync("./data/contracts/simpleContract.sol", 'utf8');
@@ -101,7 +101,7 @@ function _getLatestContract() {
 }
 
 function _sendEth(dest) {
-    unlockAdminAccout();
+    unlockAdminAccount();
     let adminAccount = web3.eth.accounts[0];
     let tHash;
 
@@ -125,6 +125,7 @@ function _sendEth(dest) {
 }
 
 module.exports = {
+    unlockAdminAccount: unlockAdminAccount, 
     getUserInfo: _getUserInfo,
     uploadFileHash: _uploadFileHash,
     checkTHash: _checkTHash,
