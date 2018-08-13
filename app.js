@@ -13,6 +13,8 @@ var uploadDB = require('./models/uploadDB');
 var util=require('./models/Utility');
 var pfcctr=require('./models/PFCCTR');
 var Serverdownload = require('./models/ServerDownload');
+var db = require('./models/db');
+var geth = require('./models/geth');
 var loginObj;
 var ServerState = "UNSTABLE";
 
@@ -117,7 +119,9 @@ var server = app.listen(8081, function () {
 	}).catch(function (error) {
 		console.log(error);
 		process.exit();
-	});
+	}).done();
+
+	// geth.unlockAdminAccount();
 });
 
 var serv_io = io.listen(server);
@@ -125,10 +129,8 @@ var serv_io = io.listen(server);
 serv_io.use(sharedsession(session, { autoSave:true }));
 
 serv_io.sockets.on('connection', function(socket) {
-    console.log(typeof filesock);
 	if(ServerState=="STABLE"){
-        console.log(uploadDB == undefined);
-		filesock.sock_recv(socket,loginObj,uploadDB);
+		filesock.sock_recv(socket,loginObj,uploadDB, db);
 	}
 });
 

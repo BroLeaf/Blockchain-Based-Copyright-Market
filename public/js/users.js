@@ -12,14 +12,24 @@ function getXHR(){
     return xhr;
 }
 
-function sendEth() {	
-    let xhr = getXHR();
+var sent = false;
 
-    xhr.open("POST", "/users/receiveAddr", false);
-    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhr.send("addr=" + latestContractAddr);
-    
-    let json = xhr.responseText;
-    let obj = eval('(' + json + ')');
-    console.log(obj);
+function sendEth() {
+    sent = true;
 }
+
+function isSent() {
+    return sent;
+}
+
+// function sendEth() {	
+//     let xhr = getXHR();
+
+//     xhr.open("POST", "/users/receiveAddr", false);
+//     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//     xhr.send("addr=" + latestContractAddr);
+    
+//     let json = xhr.responseText;
+//     let obj = eval('(' + json + ')');
+//     console.log(obj);
+// }

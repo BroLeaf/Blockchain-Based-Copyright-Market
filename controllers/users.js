@@ -35,15 +35,17 @@ router.post('/receiveAddr', function(req, res, next) {
 });
 
 router.post('/', function(req,res){
-	opp=req.body.musicname;
+    x = req.body.tag;
+    console.log(x);
+    
 	try{
-		db.dbquery(opp)
+		db.dbquery(x)
 		.then( (resp) => {
             console.log(resp);
 
-		    if(resp.length==0){
-				 res.send("Oops!! There is no result named "+opp);
-			} else{
+		    if(resp.length==0) {
+				 res.send("Oops!! There is no result named " + x);
+			} else {
 			     res.render('users.ejs',{Persons: resp});
             }
 		})
@@ -58,9 +60,15 @@ router.post('/', function(req,res){
 router.get('/download',function(req,res){
 	if(app.getServerState() == "STABLE"){
         let keyword=req.query.keyword;
-		let slice=req.query.slice;
+        let slice=req.query.slice;
         let ssn = req.session;
         let loginObj = app.getLoginObject();
+
+        // console.log("in controller: ");
+        // console.log(keyword);
+        // console.log(slice);
+        // console.log(ssn);
+        // console.log(loginObj);
 
         Serverdownload.DownloadFile(loginObj.userID,loginObj.userKey, loginObj.serverSk,loginObj.proxySk,loginObj.keywordKey, keyword,uploadDB.getCookie(),slice,ssn,function(data) {
             res.writeHead(200, {"Content-Type": "text/plain;charset=utf-8"});
@@ -69,6 +77,22 @@ router.get('/download',function(req,res){
 	}else{
 		res.sendStatus(404);
 	}
+})
+
+router.get('/detail', function(req, res) {
+    let x = req.query.tag;
+    // console.log("in controller: /user/detail/?keyword=");
+    // console.log(x);
+
+    db.dbquery2(x)
+    .then( (resp) => {
+        // console.log("======");
+        // console.log(resp);
+        res.render('detail.ejs',{ Persons: resp, Addr: geth.getLatestContract() });
+    })
+    .catch( (err) => {
+        console.log(err);
+    })
 })
 
 module.exports = router;

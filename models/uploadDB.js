@@ -13,6 +13,11 @@ module.exports={
 	getCookie : function(){
 		return cookie;
 	},
+	
+	getKeyword : function() {
+		return "No." + db_datas;
+	},
+	
 	SHA256_bytes : function(data){
 		var hash = crypto.createHash('sha256');
 		hash.update(data);
@@ -249,6 +254,7 @@ module.exports={
 			loginObj.userKey.slice());
 			var totalSlice=Math.ceil(filesize /CHUNK_SIZE);
 			var keyword="No."+db_datas;
+			db_datas++;
 			var keywords=keywordsToHexString(keyword,keywordKey);
 			//console.log("keywords: "+keywords);
 			//console.log("filename: "+filename);
@@ -402,8 +408,8 @@ module.exports={
 						response.on('data', function (data) {
 							var json = JSON.parse(crypt.HELPER_DecryptString(data.trim(), loginObj.proxySk));
 							//console.log(json);
-							console.log("No."+db_datas+" finish!");
-							db_datas++;
+							console.log(keyword+" finish!");
+							//db_datas++;
 							//	dfd.resolve("SUCCESS5");
 						})
 					});

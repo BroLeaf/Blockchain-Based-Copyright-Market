@@ -1,6 +1,6 @@
 window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
-function download(){
-	let keyword = "No.0";
+function keywordFinish(keyword){
+	console.log(keyword);
 	$.ajax({
 		url: "/users/download?slice=0&keyword=" + keyword,
 		type: "GET"
@@ -10,13 +10,14 @@ function download(){
 		pushAjaxRequest(1, obj.slice, obj.name, obj.size, keyword);
 	});
 }
+
 function pushAjaxRequest(cur, slice, filename, size, keyword) {
 	console.log(cur);
 	
 	$.ajax({
 		url: "/users/download?slice=" + cur + "&keyword=" + keyword,
 		type: "GET",
-	}).done(function(chunk) {
+		}).done(function(chunk) {
 		let obj = JSON.parse(chunk);
 		let filebuf = obj.filebuf.data;
 		let sessionKey = JSON.parse(localStorage.getItem("sessionKey"));
@@ -32,7 +33,7 @@ function pushAjaxRequest(cur, slice, filename, size, keyword) {
 		console.log(blob);
 		window.requestFileSystem(TEMPORARY, 1048567 * 1024, function(fs) {
 			fs.root.getFile(filename, {create: true}, function(fileEntry) {
-
+				
 				fileEntry.createWriter(function(fileWriter) {
 					if(cur==1)fileWriter.truncate(0);
 				}, onFileSystemError);
@@ -47,7 +48,7 @@ function pushAjaxRequest(cur, slice, filename, size, keyword) {
 							a.download = filename;
 							document.body.appendChild(a);
 							a.click();
-						}else if(cur < slice){
+							}else if(cur < slice){
 							console.log("request");
 							pushAjaxRequest(cur+1, slice, filename, size, keyword);
 						}
