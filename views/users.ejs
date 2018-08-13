@@ -7,9 +7,6 @@
 
     <body>
 
-        <h3>File Download：</h3>
-        Choose a file: <br />
-        <input type="button" value="download" onclick="download()">
         <script src="js/jquery-3.1.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/asmCrypto/0.22.0/asmcrypto.min.js"></script>
         <script src="js/PFCCTR.js"></script>
@@ -21,21 +18,19 @@
         <script src="/socket.io/socket.io.js"></script>
         <script src="js/download.js"></script>
 
-        <button onclick="sendEth()"> sendEth </button>
-
         <h1>Search area:</h1>
         <p>Please enter the name of works</p>
         <form name="monquery" method="post" action="/users">
-            <input type="text" placeholder="musicname" name="musicname" />
+            <input type="text" placeholder="keyword" name="tag" />
             <input type="submit"  value="search" />
         </form>
 	
-        result
+        <h1>result<h1>
 
         <ul class="Persons">
             <% for(var i=0; i<Persons.length; i++) {%>
             <li class="person">
-            <span><a target="_blank"href="showdetail/?musicname=<%=Persons[i].keyword%>"><%= Persons[i].keyword %></span>
+            <span><a target="_blank"href="/users/detail/?tag=<%=Persons[i].keyword%>"><%= Persons[i].keyword %></span>
             </li>
             <% } %>
         </ul>

@@ -16,7 +16,7 @@ MongoClient.connect(url, function(err, db) {
     db.collection('works', function(err, col) {
 
         col.insert({
-            type:'music', auth:'Alice', year:'1997'
+            type:'music', auth:'Alice', year:'1997', keyword: 'keyword1'
         });
     
         col.count(function(err,count){

@@ -41,19 +41,25 @@ router.post('/maka', function (req, res) {
 		var httpreq = http.request(options, function (response) {
 			response.setEncoding('utf8');
 			response.on('data', function (chunk) {
-				var obj = JSON.parse(chunk);
-				var resend=JSON.stringify({
-					result:obj.result,
-					IDs:obj.IDs,
-					Nx:obj.Nx,
-					V4:obj.V4,
-					TS:obj.TS
-				});
-				if(obj.result==true){
-					var sk= new Uint8Array(new Buffer(obj.SK,"hex"));
-					ssn.sk=JSON.stringify(Array.apply([], sk));
+
+				try {
+					var obj = JSON.parse(chunk);
+					var resend=JSON.stringify({
+						result:obj.result,
+						IDs:obj.IDs,
+						Nx:obj.Nx,
+						V4:obj.V4,
+						TS:obj.TS
+					});
+					if(obj.result==true){
+						var sk= new Uint8Array(new Buffer(obj.SK,"hex"));
+						ssn.sk=JSON.stringify(Array.apply([], sk));
+					}
+					res.send(resend);
+				} catch(e) {
+					console.log(e);
+					res.sendStatus(500);
 				}
-				res.send(resend);
 			});
 		});
 		httpreq.write(data);
