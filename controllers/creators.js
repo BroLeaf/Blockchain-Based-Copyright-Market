@@ -63,13 +63,21 @@ router.get('/contract', function(req, res, next) {
 })
 
 router.post('/fileInfo', function(req, res, next) {
-    type = req.body.type;
-    auth = req.body.auth;
-    year = req.body.year;
-    console.log("in router post fileInfo");
-    
-    db.dbinsert(type, auth, year);
-    res.send("Insert success.");
+	if(req.session.sk){
+		type = req.body.type;
+		auth = req.body.auth;
+		year = req.body.year;
+		console.log("in router post fileInfo");
+		
+		let timestamp = new Date().getTime(),uid = req.session.idc;
+		let keyword = uid + "_" + timestamp ;
+		console.log("keyword= "+keyword);
+		req.session.keyword = keyword;
+		db.dbinsert(type, auth, year,keyword);
+		res.send("Insert success.");
+	}else{
+		res.sendStatus(404);
+	}
 })
 
 module.exports = router;

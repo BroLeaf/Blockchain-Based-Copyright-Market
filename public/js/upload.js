@@ -41,6 +41,10 @@ function uploadfile(){
 		console.log('end upload');
 		socket.emit('end');
 	});
+	socket.on('error occur', (data) => {
+		socket.emit('error end');
+		alert('error occur');
+	});
 }
 function updateProgressBar(cur,total){
 	let elem = document.getElementById("myBar");   

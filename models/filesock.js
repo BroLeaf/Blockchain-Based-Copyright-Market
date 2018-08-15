@@ -3,7 +3,15 @@ var crypt = require('./usage');
 var fs = require("fs");
 module.exports={
 	sock_recv : function(socket, loginObj, uploadDB, localDB){
-		
+		if(!socket.handshake.session.sk){
+			socket.emit('error occur');
+			socket.on('error end', function (){
+				console.log("client upload err");
+				socket.disconnect(0);
+			});
+			return;
+		}
+	
 		var sessionKey = JSON.parse(socket.handshake.session.sk);
 		sessionKey = new Uint8Array(sessionKey);
 		
@@ -61,9 +69,9 @@ module.exports={
 			console.log("socket end");
 			socket.disconnect(0);
 			
-			let keyword = uploadDB.getKeyword();
-			// localDB.dbinsert(name, author, 2018, keyword);
-			uploadDB._uploadFile(loginObj,path,name);
+			let keyword = socket.handshake.session.keyword;
+			console.log(keyword);
+			uploadDB._uploadFile(loginObj,path,name,keyword);
 		});
 	}
 };

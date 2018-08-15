@@ -238,7 +238,7 @@ module.exports={
 		httpreq.end();
 		return dfd.promise;
 	},
-	_uploadFile: function(loginObj,filePath,filename) {
+	_uploadFile: function(loginObj,filePath,filename,keyword) {
 		function keywordsToHexString (input,keywordKey) {			
 			var result = [];
 			var splitted = input.replace(/\s+/g, " ").split(" ");
@@ -253,8 +253,8 @@ module.exports={
 			var keywordKey=pfcctr.PFCCTR_Decrypt(loginObj.keywordKey,loginObj.userKey,
 			loginObj.userKey.slice());
 			var totalSlice=Math.ceil(filesize /CHUNK_SIZE);
-			var keyword="No."+db_datas;
-			db_datas++;
+		//	var keyword="No."+db_datas;
+		//	db_datas++;
 			var keywords=keywordsToHexString(keyword,keywordKey);
 			//console.log("keywords: "+keywords);
 			//console.log("filename: "+filename);

@@ -58,7 +58,7 @@ router.post('/', function(req,res){
 })
 
 router.get('/download',function(req,res){
-	if(app.getServerState() == "STABLE"){
+	if(app.getServerState() == "STABLE"&&req.session.sk){
         let keyword=req.query.keyword;
         let slice=req.query.slice;
         let ssn = req.session;

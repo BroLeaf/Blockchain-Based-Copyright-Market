@@ -50,7 +50,7 @@ function _dbquery2(x) {
     });
 }
 
-function _dbinsert(type, auth, year) {
+function _dbinsert(type, auth, year, keyword) {
     MongoClient.connect(url, function(err, db) {	
         if (err) throw err;
 
@@ -59,7 +59,7 @@ function _dbinsert(type, auth, year) {
                 type: type,
                 auth: auth,
                 year: year,
-                keyword: uploadDB.getKeyword(),
+                keyword: keyword,
             });
             
             collection.count(function(err,count){
