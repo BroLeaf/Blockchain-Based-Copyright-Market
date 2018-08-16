@@ -8,6 +8,9 @@ var db = require("../models/db.js");
 router.get('/', function(req, res, next) {
     if(app.getServerState() != "STABLE") {
         res.sendStatus(404);
+    } else if (!req.session.sk){
+		console.log("creators not login");
+		res.redirect('../login');
     } else {
         res.render('creators', { title: 'For Creators' });
     }
