@@ -12,8 +12,17 @@ function _dbquery(key, value) {
     
             db.collection(dbCollectionName, function(err, col) {
                 let query = {};
-                query[key] = new RegExp(value);
-
+				if(key==""){
+					//console.log("empty");
+					query["$or"] = [
+						{"type":new RegExp(value)},
+						{"auth":new RegExp(value)},
+						{"year":new RegExp(value)},
+					];
+				}else{
+					query[key] = new RegExp(value);
+				}				
+			
                 col.find(query).toArray(function(err, items){
                     if(err) reject(err);
                     else resolve(items);

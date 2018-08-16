@@ -42,6 +42,11 @@ h1 {
   text-align: center;  
 }
 
+#Test {
+  padding: 0px;
+  border: 0px;
+}
+
 input {
   padding: 10px;
   width: 100%;
@@ -98,3 +103,211 @@ button:hover {
 .step.finish {
   background-color: #4CAF50;
 }
+
+
+/*index.ejs*/
+.navi_bar {
+    min-height: 60px;
+    background-color: #000;
+    position: relative;
+    left: 0px;
+    top: 0px;
+    z-index: 10;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    position: fixed;
+
+    background-color: #000;
+    background-color:rgba(0%,0%,0%,0.8);
+    color: #000;
+    border-bottom: none;
+
+  }
+  .navi_logo{
+    color: #000;
+  }
+  .navi_logo_tw {
+      font-size: 20px;
+      letter-spacing: 3px;
+      float: left;
+      height: 60px;
+      color: #FFF;
+      line-height: 60px;
+      margin-left: 5%;
+  }
+  .navi_logo_tw:hover{
+    color: #FFF;
+  }
+  .navi_logo_en {
+      letter-spacing: 5px;
+      font-size: 10px;
+      font-weight: 200px;
+      float: left;
+      height: 60px;
+      line-height: 60px;
+      margin-left: 15px;
+      color: #FFF;
+  }
+  .navi_wrap_buttonarea {
+    text-align: center;
+    display: inline-block;
+    /* border-bottom: 1px solid #353535; */
+    margin-bottom: 15px;
+    color: #000;
+     POSITION: absolute; 
+    right: 3%;
+  }
+  .navi_wrap_button {
+      float: left;
+      padding-left: 15px;
+      padding-right: 15px;
+      color: #FFF;
+      font-size: 14px;
+      height: 60px;
+      line-height: 60px;
+      cursor: pointer;
+  }
+  .navi_wrap_button:hover {
+    color: #DAA520;
+
+  }
+  .navi_wrap_button.select {
+    color: #DAA520;
+  }
+  .navi_wrap_vertical {
+    float: left;
+    background-color: #ddd;
+    height: 20px;
+    margin-top: 20px;
+    width: 1px;
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+  .gray {
+    color: #BBB;
+    font-size: 14px;
+  }
+  .navi-background {
+    background-image: url("/images/background.jpg");
+    
+    background-size: cover;
+    background-position: top;
+    background-attachment: fixed;
+    color: #FFF;
+  }
+  .navi-background .index-container {
+    height: 120%;
+  }
+  .github-icon{
+    height: 35px;
+    width: 35px;
+    margin-top: 11px;
+    margin-left: 15px;
+  }
+  .dropdown {
+    float: left;
+    overflow: hidden;
+  }
+  .dropdown-content {
+    display: none;
+    position: fixed;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  .dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  
+  .index-header {
+    font-size:60px;
+		margin-top:15%;
+  }
+  .index-sub-header {
+    font-size:22px;
+    margin-bottom: 7%;
+  }
+  .index-search {
+    width:70%;
+    margin-top: 50px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .index-search .searchbar {
+    float: left;
+    width: 60%;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 20px;
+    margin-left: 10%;
+  }
+  .index-search .search-icon{
+    height: 30px;
+	width: 30px;
+    top: 5px;
+    position: absolute;
+    z-index: 1;
+    right: 96px; 
+  }
+  .index-search #select {
+    height: 40px;
+    width: 150px;
+    float: left;
+  }
+  .title-lead{
+    margin-top: 15%;
+    margin-bottom: 10%;
+    font-size: 50px;
+    text-align: center !important;
+
+  }
+  .container-section{
+    padding-left: 0%;
+    padding-right: 0%;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  #about {
+    /*background-color: #92a8d1;*/
+	  border: 1px solid yellow;
+	  height: 100%;
+  }
+  .text-center-section {
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: auto;
+    margin-right: auto; 
+    font-size: 46px;   
+  }
+  .lead-section {
+    margin-top: 5%;
+    font-size:26px;
+  }
+  #user-register {
+    /*background-color:blue;*/
+	  border: 1px solid blue;
+	  height: 100%;
+  }
+  #Buyer {
+    /*background-color: #92a8d1;*/
+	  border: 1px solid yellow;
+	  height: 100%;
+  }
+  #Creator {
+    border: 1px solid blue;
+	  height: 100%;
+  }

@@ -1,17 +1,123 @@
-<html>
-
+<!--<html>
+	
     <head>
-        <title><%= title %></title>
-        <link rel='stylesheet' href='/css/style.css' />
-        <script text="text/script" src="/js/index.js"></script>
+	<title><%= title %></title>
+	<link rel='stylesheet' href='/css/style.css' />
+	<script text="text/script" src="/js/index.js"></script>
     </head>
-
+	
     <body>
-
-        <button onclick="gotoLogin()"> gotoLogin </button>
-        <button onclick="gotoCreators()"> gotoCreators </button>
-        <button onclick="gotoUsers()"> gotoUsers </button>
-
+	
+	<button onclick="gotoLogin()"> gotoLogin </button>
+	<button onclick="gotoCreators()"> gotoCreators </button>
+	<button onclick="gotoUsers()"> gotoUsers </button>
+	
     </body>
-
-</html>
+	
+	</html>
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<html>
+		
+		<head>
+			
+			<!-- HTML meta 設定 -->
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<title>首頁</title>
+			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+			<meta name="google-site-verification" content="" />
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+			<link rel="stylesheet" href="/css/style.css">
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			<script text="text/script" src="/js/index.js"></script>
+			
+			
+		</head>
+		
+		<body>
+			<nav class="navi_bar">
+				<div class="navi_logo">
+					<a class="navi_logo_tw" href="index.html">創作內容平台</a>
+					<div class="navi_logo_en">Taiwan Copyright Market</div>
+				</div>
+				<div class="navi_wrap_buttonarea">
+					<a href="./"><div class="navi_wrap_button" >首頁</div></a>
+					<div class="navi_wrap_vertical"></div>
+					<a href='/users' class="loginhide" ><div class="navi_wrap_button gray">逛逛市集</div></a>
+					<a href='/creators' class="loginhide" ><div class="navi_wrap_button gray">創作者上傳</div></a>
+					<a href='/login' class="loginhide"><div class="navi_wrap_button gray">會員登入</div></a>
+					<a href="https://github.com/etc276/Blockchain-Based-Copyright-Market" title="Github"><img class="github-icon" src="images/github.png"></a>
+					<div class="dropdown">
+						<div class="dropbtn navi_wrap_button gray">menu 
+						<i class="fa fa-caret-down"></i></div>
+						<div class="dropdown-content">
+							<a href="#about">關於網站</a>
+							<a href="#user-register">使用者註冊</a>
+							<a href="#Buyer">買家使用</a>
+							<a href="#Creator">創作者上傳</a>
+						</div>
+					</div> 
+				</div>   
+			</nav>
+			
+			<!-- main contain -->
+			<div class="navi-background">
+				<div class="container text-center index-container">
+					<div class="index-header" style="font-family:Microsoft JhengHei;">創作內容平台</div>
+					<div class="index-sub-header">find your inspiration here</div>
+					<!-- Search bar-->
+					<div class="index-search">
+						<input class="search-icon" type="image" src="images/search-icon.png"  alt="send" name="Test" id="Test" onclick="SearchinIndex();" />
+						<input type="text" id="search" class="searchbar form-control" placeholder="想找什麼樣的作品？">
+						<select id="select" class="form-control">
+							<option value="">所有類型</option>
+							<option value="type">作品</option>
+							<option value="auth">作者</option>
+							<option value="year">年份</option>
+						</select>
+					</div>
+					<p class="title-lead">保障你的著作財產權，讓你創作無後顧之憂</p>
+				</div>
+			</div> 
+			<!-- section1 -->
+			<section id="about">
+				<div class="container container-section">
+					<h3 class="text-center-section">關於本網站  </h3>
+					<p class="lead-section text-center-section">理念、使用方式、對象等等。</p>
+				</div>
+			</section>
+			<!-- section2 -->
+			<section id="user-register">
+				<div class="container container-section">
+					<h1 class="text-center-section">使用者註冊</h1>
+					<p class="lead-section text-center-section">
+						註冊流程123
+					</p>
+				</div>
+			</section>
+			<!-- section3 -->
+			<section id="Buyer">
+				<div class="container container-section">
+					<h1 class="text-center-section">買家使用流程</h1>
+					<p class="lead-section text-center-section">
+						購買流程123
+					</p>
+				</div>
+			</section>
+			<!-- section4 -->
+			<section id="Creator">
+				<div class="container container-section">
+					<h1 class="text-center-section">創作者使用流程</h1>
+					<p class="lead-section text-center-section">
+						上傳流程123
+					</p>
+				</div>
+			</section>
+			
+		</body>
+		
+	</html>	

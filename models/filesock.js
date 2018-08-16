@@ -40,10 +40,8 @@ module.exports={
 				var fileBuffer = Buffer.concat(files[filename].data); 
 			
 				let realFileHash = uploadDB.SHA256_hex(fileBuffer);
-				// console.log("upload hash: " + socket.handshake.session.fileHash);
-				// console.log("real hash: " + realFileHash);
 				if(realFileHash != socket.handshake.session.fileHash){
-					console.log("filehash error");
+					//console.log("filehash error");
 					delete files[filename];
 					socket.emit('redirect',"../creators");
 					socket.disconnect(0);
@@ -74,7 +72,6 @@ module.exports={
 			
 			let timestamp = new Date().getTime(),uid = socket.handshake.session.idc;
 			let keyword = uid + "_" + timestamp ;
-			console.log("filesock.js keyword= " + keyword);
 			socket.handshake.session.keyword = keyword;
 			socket.handshake.session.filename = name;
 			uploadDB._uploadFile(loginObj, path, name, keyword);

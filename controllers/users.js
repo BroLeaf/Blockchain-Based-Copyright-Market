@@ -8,11 +8,26 @@ var uploadDB = require('../models/uploadDB');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-
     if(app.getServerState() != "STABLE") {
 		res.sendStatus(404);
 	} else {
-        res.render('users', { title: 'For Users', Persons: {}});
+		if(req.query.key == null){
+	//		console.log("hi");
+			res.render('users', { title: 'For Users', Persons: {}});
+		}else{
+			let key = req.query.key;
+			let value = req.query.value;
+//			console.log("key= "+key+" value= "+value);
+			db.dbquery(key,value)
+			.then( (resp) => {
+				if(resp.length == 0) resp = {};
+				res.render('users.ejs', { Persons: resp} );
+			})
+			.catch( (err) => {
+				console.log(err);
+				res.sendStatus(500);
+			});
+		}	
     }
 });
 
