@@ -1,15 +1,27 @@
-var latestTHash;
-var hasBlock = false;
-var hasFile = true;
-var currentTab = 0;
+var currentTab, latestTHash;
+var hasBlock, hasFile, hasHash;
+
+function init() {
+    currentTab = 0;
+    latestTHash = undefined;
+    hasBlock = hasFile = hasHash = false;
+}
 
 window.onload = function() {
+
+    init();
     setTimeout(() => { showTab(currentTab)}, 100);
 
     document.getElementById('btn1').addEventListener('click', function(){
-        // TODO: load gif
-        uploadFileHash();
-        nextPrev(1);
+        // TODO: load gif in div1
+        let fileHash = document.getElementById("fileHash").value;
+        if( fileHash == "") {
+            alert("Please input file hash");
+            return;
+        } else {
+            uploadFileHash();
+            nextPrev(1);
+        }
     });
     
     document.getElementById('btn2').addEventListener('click', function(){
@@ -49,11 +61,9 @@ function getUserInfo() {
 }
 
 function uploadFileHash() {
-    let fileHash = document.getElementById("fileHash").value;
-    if(fileHash == undefined) {
-        alert("Please input file hash");
+
+    if(hasHash == true)
         return;
-    }
 
     let xhr = getXHR();
     xhr.open("POST", "/creators/fileHash", false);
@@ -67,16 +77,21 @@ function uploadFileHash() {
             console.log(obj);
             latestTHash = obj.tHash;
         } else {
-            console.log('Error: ' + xhr.statusText);
+            alert('Error: ' + xhr.statusText + '\n Please retry.');
         }
     }
-    xhr.send("fileHash="+fileHash);
+    xhr.send("fileHash="+document.getElementById("fileHash").value);
+    hasHash = true;
 }
 
 function checkTHash() {
-    if(latestTHash == undefined)
+    let fileHash = document.getElementById("fileHash").value;
+    if( fileHash == "") {
+        alert("Please input file hash");
         return;
+    }
 
+    uploadFileHash();
     let xhr = getXHR();
     xhr.open("POST", "/creators/tHash", false);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -117,7 +132,7 @@ function uploadFileInfo() {
 function createContract() {
     let addr1 = document.getElementById("recvAddr1").value;
     let addr2 = document.getElementById("recvAddr2").value;
-    if(addr1==undefined || addr2==undefined) {
+    if(addr1=="" || addr2=="") {
         alert("Please input the receiver address.");
         return
     }
@@ -125,11 +140,19 @@ function createContract() {
     let xhr = getXHR();
     xhr.open("POST", "/creators/contract", false);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhr.send("addr1=" + addr1 + "&addr2=" + addr2);
+    xhr.onreadystatechange = function(obj) {
+        if(xhr.readyState != 4) return;
 
-    let json = xhr.responseText;
-    let obj = eval('(' + json + ')');
-    console.log(obj);
+        if(xhr.status == 200) {
+            let json = xhr.responseText;
+            let obj = eval('(' + json + ')');
+            console.log(obj);
+            latestTHash = obj.tHash;
+        } else {
+            console.log('Error: invalid address');
+        }
+    }
+    xhr.send("addr1=" + addr1 + "&addr2=" + addr2);
 }
 
 function getContractAddr() {
