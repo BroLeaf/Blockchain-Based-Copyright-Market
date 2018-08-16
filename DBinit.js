@@ -5,33 +5,36 @@ MongoClient.connect(url, function(err, db) {
     console.log("Error: " + err);
     if (err) throw err;
     
-    // delete all
+    // 'db.works.find()'
     db.collection('works', function(err, col) {
-        if(err) throw err;
+
+        // Delete all
         col.remove();
-        console.log("Collection Deleted");
-    });
+        console.log("Collection Deleted\n");
 
-    // insert one
-    db.collection('works', function(err, col) {
-
-        col.insert({
-            type:'music', auth:'Alice', year:'1997', keyword: 'keyword1'
-        });
+        // Insert
+        let obj = [
+            { type:'game', auth:'Alice', year:'1997', keyword: '#1'},
+            { type:'music', auth:'Bob', year:'1997', keyword: '#2'},
+            { type:'food', auth:'Carol', year:'2018', keyword: '#3'},
+        ]
+        col.insert(obj);
     
-        col.count(function(err,count){
-            if(err) throw err;
-            console.log('Total Rows:' + count);
+        // Count
+        col.count(function(err, count) {
+            console.log('Total Rows: ' + count);
         });
-    });
 
-    // find 1997 for test
-    db.collection('works', function(err, col) {
+        // Find with regex
+        col.find({ type: new RegExp('mu') }).toArray(function(err, result) {
+            console.log("Found Results: " + result.length);
+        });
 
-        col.find({}, {year: new RegExp('1')}).toArray(function(err, items){
-            if(err) throw err;
-            // console.log(items);
-            console.log("We found " + items.length + " results!");
+        // Update
+        let myQuery = { type: "music"};
+        let newValue = { $set: {year: "0"}};
+        col.update(myQuery, newValue, function(err, res) {
+            console.log('Updated Results: ' + res.result.nModified);
         });
     });
 
