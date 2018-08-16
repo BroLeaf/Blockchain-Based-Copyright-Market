@@ -25,7 +25,7 @@ router.get('/userInfo', function(req, res, next) {
 // put fileHash onto blockchain
 router.post('/fileHash', function(req, res, next) {
     let fileHash = req.body.fileHash;
-    // console.log(fileHash);
+    req.session.fileHash = fileHash;
 
     geth.uploadFileHash(fileHash)
     .then( tHash => {
@@ -42,7 +42,6 @@ router.post('/fileHash', function(req, res, next) {
 // get transaction information, such as blocknumber ...
 router.post('/tHash', function(req, res, next) {
     let tHash = req.body.tHash;
-    // console.log(tHash);
 
     let resp = geth.checkTHash(tHash);
     res.send(resp);
@@ -72,10 +71,8 @@ router.post('/fileInfo', function(req, res, next) {
 		year = req.body.year;
 		console.log("in router post fileInfo");
 		
-		let timestamp = new Date().getTime(),uid = req.session.idc;
-		let keyword = uid + "_" + timestamp ;
-		console.log("keyword= "+keyword);
-		req.session.keyword = keyword;
+		let keyword = req.session.keyword;
+		console.log("creator.js keyword: "+keyword);
 		db.dbinsert(type, auth, year,keyword);
 		res.send("Insert success.");
 	}else{

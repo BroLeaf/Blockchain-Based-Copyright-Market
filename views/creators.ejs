@@ -20,22 +20,11 @@
             <button onclick="nextPrev(1)" style="float:right">Next</button>
         
         </div>
-
-        <!-- step 2 -->
-        <div class="tab">
-            
-            <h1>Step 2. describe file</h1>
-            <input id="type" type="text" placeholder="type"><br>
-            <input id="auth" type="text" placeholder="auth"><br>
-            <input id="year" type="text" placeholder="year"><br>
-            <button onclick="nextPrev(1); uploadFileInfo()" style="float:right">Next</button>
-
-        </div>
-
-        <!-- step 3 -->
+		
+		<!-- step 2 -->
         <div class="tab">
 
-            <h1>Step 3. upload file</h1>
+            <h1>Step 2. upload file</h1>
             <form action="./file_upload" method="post" enctype="multipart/form-data">
                 <input type="file" name="stream">
                 <input type="button" data-inline="true" value="upload" id="filesubmit">
@@ -46,6 +35,19 @@
             <button onclick="nextPrev(1)" style="float:right">Next</button>
 
         </div>
+
+        <!-- step 3 -->
+        <div class="tab">
+            
+            <h1>Step 3. describe file</h1>
+            <input id="type" type="text" placeholder="type"><br>
+            <input id="auth" type="text" placeholder="auth"><br>
+            <input id="year" type="text" placeholder="year"><br>
+            <button onclick="nextPrev(1); uploadFileInfo()" style="float:right">Next</button>
+
+        </div>
+
+        
 
         <!-- Step 4 -->
         <div class="tab">

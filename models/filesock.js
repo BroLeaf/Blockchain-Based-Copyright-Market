@@ -2,16 +2,7 @@ var pfcctr=require('./PFCCTR');
 var crypt = require('./usage');
 var fs = require("fs");
 module.exports={
-	sock_recv : function(socket, loginObj, uploadDB, localDB){
-		if(!socket.handshake.session.sk){
-			socket.emit('error occur');
-			socket.on('error end', function (){
-				console.log("client upload err");
-				socket.disconnect(0);
-			});
-			return;
-		}
-	
+	sock_recv : function(socket, loginObj, uploadDB, localDB){	
 		var sessionKey = JSON.parse(socket.handshake.session.sk);
 		sessionKey = new Uint8Array(sessionKey);
 		
@@ -31,7 +22,6 @@ module.exports={
 			var dir = __dirname+"/../data/tmpFile/"+data.id;
 			var filename = data.timestamp+"_"+data.name;
 			path=dir+"/"+filename;
-			author = data.id;
 			
 			if (!fs.existsSync(dir)){
 				fs.mkdirSync(dir);
@@ -48,6 +38,18 @@ module.exports={
 			
 			if (files[filename].slice*1024*1024 >= files[filename].size) {
 				var fileBuffer = Buffer.concat(files[filename].data); 
+			
+				let realFileHash = uploadDB.SHA256_hex(fileBuffer);
+				console.log("upload hash: "+socket.handshake.session.fileHash);
+				console.log("real hash: "+realFileHash);
+				if(realFileHash != socket.handshake.session.fileHash){
+					console.log("filehash error");
+					delete files[filename];
+					socket.emit('redirect',"../creators");
+					socket.disconnect(0);
+					return;
+				}
+				
 				fs.writeFile(path, fileBuffer, (err) => { 
 					delete files[filename]; 
 					if (err){
@@ -58,6 +60,7 @@ module.exports={
 					t2=new Date().getTime();
 					socket.emit('end upload');
 				});
+				
 			} else { 
 				socket.emit('request slice upload', { 
 					currentSlice: files[filename].slice 
@@ -69,8 +72,10 @@ module.exports={
 			console.log("socket end");
 			socket.disconnect(0);
 			
-			let keyword = socket.handshake.session.keyword;
-			console.log(keyword);
+			let timestamp = new Date().getTime(),uid = socket.handshake.session.idc;
+			let keyword = uid + "_" + timestamp ;
+			console.log("filesock.js keyword= "+keyword);
+			socket.handshake.session.keyword = keyword;
 			uploadDB._uploadFile(loginObj,path,name,keyword);
 		});
 	}

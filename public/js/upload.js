@@ -41,9 +41,9 @@ function uploadfile(){
 		console.log('end upload');
 		socket.emit('end');
 	});
-	socket.on('error occur', (data) => {
-		socket.emit('error end');
-		alert('error occur');
+	socket.on('redirect', (data) => {
+		window.location.href = data;
+		alert('hash inconsistent');
 	});
 }
 function updateProgressBar(cur,total){
