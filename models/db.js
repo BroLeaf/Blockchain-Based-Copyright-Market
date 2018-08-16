@@ -4,43 +4,25 @@ var url = "mongodb://127.0.0.1:27017/demo0811";
 var dbCollectionName = "works"
 var resp;
 
-function _dbquery(x) {
+function _dbquery(key, value) {
 
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
 
         db.collection(dbCollectionName, function(err, collection) {
-            collection.find({type: new RegExp(x)}).toArray(function(err, items){
+            let query = {};
+            query[key] = new RegExp(value);
+            collection.find(query).toArray(function(err, items){
                 if(err) throw err;
                 resp = items;
-                // console.log(resp);
+
+                console.log("\n===== db.js query =====");
+                console.log(resp);
+                console.log("===== db.js query =====\n");
             });
         });
 
-        db.close(); //關閉連線
-    });
-
-    return new Promise(function(resolve, reject) {
-        setTimeout(function(){
-            resolve(resp);
-        }, 1000);
-    });
-}
-
-function _dbquery2(x) {
-
-    MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-
-        db.collection(dbCollectionName, function(err, collection) {
-            collection.find({keyword: new RegExp(x)}).toArray(function(err, items){
-                if(err) throw err;
-                resp = items;
-                // console.log(resp);
-            });
-        });
-
-        db.close(); //關閉連線
+        db.close();
     });
 
     return new Promise(function(resolve, reject) {
@@ -61,11 +43,6 @@ function _dbinsert(type, auth, year, keyword) {
                 year: year,
                 keyword: keyword,
             });
-            
-            collection.count(function(err,count){
-                if(err) throw err;
-                console.log('Total Rows:'+count);
-            });
         });
 
       	db.close();
@@ -74,6 +51,5 @@ function _dbinsert(type, auth, year, keyword) {
 
 module.exports = {
     dbquery: _dbquery,
-    dbquery2: _dbquery2,
 	dbinsert: _dbinsert,
 }

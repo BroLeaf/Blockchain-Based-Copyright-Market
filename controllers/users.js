@@ -24,10 +24,7 @@ router.post('/receiveAddr', function(req, res, next) {
 
     geth.sendEth(dest)
     .then( tHash => {
-        // console.log("tHash in route:  " + tHash);
-        res.send({
-            tHash: tHash
-        });
+        res.send({ tHash: tHash });
     })
     .catch( err => {
         console.log(err);
@@ -35,63 +32,49 @@ router.post('/receiveAddr', function(req, res, next) {
 });
 
 router.post('/', function(req,res){
-    x = req.body.tag;
-    console.log(x);
+    let value = req.body.tag;
+    // console.log(value);
     
-	try{
-		db.dbquery(x)
-		.then( (resp) => {
-            console.log(resp);
-
-		    if(resp.length==0) {
-				 res.send("Oops!! There is no result named " + x);
-			} else {
-			     res.render('users.ejs',{Persons: resp});
-            }
-		})
-		.catch( (err) => {
-			console.log(err);
-		})
-	} catch (e){
-		console.log(e);
-	}
+    db.dbquery("type", value)
+    .then( (resp) => {
+        if(resp.length == 0) resp = {};
+        res.render('users.ejs', { Persons: resp} );
+    })
+    .catch( (err) => {
+        console.log(err);
+        res.sendStatus(500);
+    });
 })
 
 router.get('/download',function(req,res){
-	if(app.getServerState() == "STABLE"&&req.session.sk){
-        let keyword=req.query.keyword;
-        let slice=req.query.slice;
+	if(app.getServerState() == "STABLE" && req.session.sk){
+        let keyword = req.query.keyword;
+        let slice = req.query.slice;
         let ssn = req.session;
         let loginObj = app.getLoginObject();
 
-        // console.log("in controller: ");
-        // console.log(keyword);
-        // console.log(slice);
-        // console.log(ssn);
-        // console.log(loginObj);
-
-        Serverdownload.DownloadFile(loginObj.userID,loginObj.userKey, loginObj.serverSk,loginObj.proxySk,loginObj.keywordKey, keyword,uploadDB.getCookie(),slice,ssn,function(data) {
+        Serverdownload.DownloadFile(loginObj.userID, loginObj.userKey, loginObj.serverSk,
+                                    loginObj.proxySk, loginObj.keywordKey, keyword,
+                                    uploadDB.getCookie(), slice, ssn, function(data) {
             res.writeHead(200, {"Content-Type": "text/plain;charset=utf-8"});
             res.end(data);
         });
-	}else{
+	} else {
 		res.sendStatus(404);
 	}
 })
 
 router.get('/detail', function(req, res) {
-    let x = req.query.tag;
-    // console.log("in controller: /user/detail/?keyword=");
-    // console.log(x);
+    let value = req.query.tag;
+    // console.log(value);
 
-    db.dbquery2(x)
+    db.dbquery("keyword", value)
     .then( (resp) => {
-        // console.log("======");
-        // console.log(resp);
-        res.render('detail.ejs',{ Persons: resp, Addr: geth.getLatestContract() });
+        res.render('detail.ejs', { Persons: resp, Addr: resp.contractAddr });
     })
     .catch( (err) => {
         console.log(err);
+        res.sendStatus(500);
     })
 })
 
