@@ -4,22 +4,25 @@ var hasFile = true;
 var currentTab = 0;
 
 window.onload = function() {
+    setTimeout(() => { showTab(currentTab)}, 100);
 
-    document.getElementById("fileHash").addEventListener("keydown", (e) => {
-        if(e.keyCode == 13) {
-            uploadFileHash();
-        }
+    document.getElementById('btn1').addEventListener('click', function(){
+        // TODO: load gif
+        uploadFileHash();
+        nextPrev(1);
+    });
+    
+    document.getElementById('btn2').addEventListener('click', function(){
+        if(hasFile != true)
+            alert('please upload file first');
+        else
+            nextPrev(1);
     });
 
-    document.getElementById("filesubmit").addEventListener("click", () => {
-        uploadfile();
-        hasFile=true;
-        uploadFileHash();
-    })
-
-    let _ = setTimeout(function() {
-        showTab(currentTab); // Display the crurrent tab
-    }, 100);
+    document.getElementById('btn3').addEventListener('click', function(){
+        uploadFileInfo();
+        nextPrev(1);
+    });
 }
 
 // create an XMLHttpRequest Object
@@ -55,12 +58,19 @@ function uploadFileHash() {
     let xhr = getXHR();
     xhr.open("POST", "/creators/fileHash", false);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhr.send("fileHash="+fileHash);
+    xhr.onreadystatechange = function(obj) {
+        if(xhr.readyState != 4) return;
 
-    let json = xhr.responseText;
-    let obj = eval('(' + json + ')');
-    // console.log(obj);
-    latestTHash = obj.tHash;
+        if(xhr.status == 200) {
+            let json = xhr.responseText;
+            let obj = eval('(' + json + ')');
+            console.log(obj);
+            latestTHash = obj.tHash;
+        } else {
+            console.log('Error: ' + xhr.statusText);
+        }
+    }
+    xhr.send("fileHash="+fileHash);
 }
 
 function checkTHash() {

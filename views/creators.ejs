@@ -17,24 +17,26 @@
             <h1>(check button is option)</h1>
             <input id="fileHash" type="text" placeholder="hash of file"><br>
             <button onclick="checkTHash()"> check </button>
-            <button onclick="nextPrev(1)" style="float:right">Next</button>
+            <button id="btn1" style="float:right">Next</button>
         
         </div>
-		
+        
+        
 		<!-- step 2 -->
         <div class="tab">
 
             <h1>Step 2. upload file</h1>
             <form action="./file_upload" method="post" enctype="multipart/form-data">
                 <input type="file" name="stream">
-                <input type="button" data-inline="true" value="upload" id="filesubmit">
+                <input type="button" data-inline="true" value="upload" id="filesubmit" onclick="uploadfile(); hasFile=true;">
             </form>
             <div id="myProgress">
                 <div id="myBar"> 0% </div>
             </div>
-            <button onclick="nextPrev(1)" style="float:right">Next</button>
+            <button id="btn2" style="float:right">Next</button>
 
         </div>
+
 
         <!-- step 3 -->
         <div class="tab">
@@ -43,11 +45,10 @@
             <input id="type" type="text" placeholder="type"><br>
             <input id="auth" type="text" placeholder="auth"><br>
             <input id="year" type="text" placeholder="year"><br>
-            <button onclick="nextPrev(1); uploadFileInfo()" style="float:right">Next</button>
+            <button id='btn3' style="float:right">Next</button>
 
         </div>
 
-        
 
         <!-- Step 4 -->
         <div class="tab">

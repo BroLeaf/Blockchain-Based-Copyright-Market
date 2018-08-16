@@ -29,10 +29,7 @@ router.post('/fileHash', function(req, res, next) {
 
     geth.uploadFileHash(fileHash)
     .then( tHash => {
-        // console.log("tHash in route:  " + tHash);
-        res.send({
-            tHash: tHash
-        });
+        res.send({ tHash: tHash });
     })
     .catch( err => {
         console.log(err);
