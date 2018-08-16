@@ -29,19 +29,14 @@ function _dbquery(key, value) {
     });
 }
 
-function _dbinsert(type, auth, year, keyword) {
+function _dbinsert(obj) {
     MongoClient.connect(url, function(err, db) {	
         if (err) throw err;
 
         db.collection(dbCollectionName, function(err, collection) {
-            collection.insert({
-                type: type,
-                auth: auth,
-                year: year,
-                keyword: keyword,
-            });
+            collection.insert(obj);
         });
-
+        
       	db.close();
     });
 }

@@ -65,19 +65,21 @@ router.get('/contract', function(req, res, next) {
 })
 
 router.post('/fileInfo', function(req, res, next) {
-	if(req.session.sk){
-		type = req.body.type;
-		auth = req.body.auth;
-		year = req.body.year;
-		console.log("in router post fileInfo");
-		
-		let keyword = req.session.keyword;
-		console.log("creator.js keyword: "+keyword);
-		db.dbinsert(type, auth, year,keyword);
-		res.send("Insert success.");
-	}else{
-		res.sendStatus(404);
-	}
+	if(!req.session.sk) {
+        res.send("Login error.");
+    }
+
+    let obj = {
+        type: req.body.type,
+        auth: req.body.auth,
+        year: req.body.year,
+        keyword: req.session.keyword,
+        filename: req.session.filename,
+        fileHash: req.session.fileHash,
+    }
+
+    db.dbinsert(obj);
+    res.send("Insert success.");
 })
 
 module.exports = router;

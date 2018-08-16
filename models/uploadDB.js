@@ -407,10 +407,10 @@ module.exports={
 						response.setEncoding('utf8');
 						response.on('data', function (data) {
 							var json = JSON.parse(crypt.HELPER_DecryptString(data.trim(), loginObj.proxySk));
-							//console.log(json);
-							console.log(keyword+" finish!");
-							//db_datas++;
-							//	dfd.resolve("SUCCESS5");
+							// console.log(json);
+							// console.log(keyword+" finish!");
+							// db_datas++;
+							// dfd.resolve("SUCCESS5");
 						})
 					});
 					httpreq.write(postParam);
