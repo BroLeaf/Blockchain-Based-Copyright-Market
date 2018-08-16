@@ -41,7 +41,24 @@ function _dbinsert(obj) {
     });
 }
 
+function _dbupdate(keyword, addr) {
+    MongoClient.connect(url, function(err, db) {	
+        if (err) throw err;
+
+        db.collection(dbCollectionName, function(err, col) {
+            let myQuery = { "keyword": keyword };
+            let newValue = { $set: { "addr": addr } };
+            col.update(myQuery, newValue, function(err, res) {
+                console.log('Updated Results: ' + res.result.nModified);
+            });
+        });
+        
+      	db.close();
+    });
+}
+
 module.exports = {
     dbquery: _dbquery,
-	dbinsert: _dbinsert,
+    dbinsert: _dbinsert,
+    dbupdate: _dbupdate,
 }

@@ -4,6 +4,7 @@ web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 
 var fs = require('fs');
 var solc = require('solc');
+var db = require('./db');
 var latestContractAddr;
 
 function unlockAdminAccount() {
@@ -60,7 +61,7 @@ function _checkTHash(tHash) {
     return resp;
 }
 
-function _createContract(addr1, addr2) {
+function _createContract(addr1, addr2, keyword) {
     unlockAdminAccount();
 
     // compile contract
@@ -87,6 +88,7 @@ function _createContract(addr1, addr2) {
             if (typeof contract.address !== 'undefined') {
                 console.log('Contract mined! address: ' + contract.address)
                 console.log('transactionHash: ' + contract.transactionHash);
+                db.dbupdate(keyword, contract.address);
                 latestContractAddr = contract.address;
             }
         }
