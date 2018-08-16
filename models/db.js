@@ -6,29 +6,26 @@ var resp;
 
 function _dbquery(key, value) {
 
-    MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
+    return new Promise(function(resolve, reject){
+        MongoClient.connect(url, function(err, db) {
+            if (err) throw err;
+    
+            db.collection(dbCollectionName, function(err, col) {
+                let query = {};
+                query[key] = new RegExp(value);
 
-        db.collection(dbCollectionName, function(err, collection) {
-            let query = {};
-            query[key] = new RegExp(value);
-            collection.find(query).toArray(function(err, items){
-                if(err) throw err;
-                resp = items;
-
-                console.log("\n===== db.js query =====");
-                console.log(resp);
-                console.log("===== db.js query =====\n");
+                col.find(query).toArray(function(err, items){
+                    if(err) reject(err);
+                    else resolve(items);
+    
+                    console.log("\n===== db.js query =====");
+                    console.log(items);
+                    console.log("===== db.js query =====\n");
+                });
             });
+    
+            db.close();
         });
-
-        db.close();
-    });
-
-    return new Promise(function(resolve, reject) {
-        setTimeout(function(){
-            resolve(resp);
-        }, 1000);
     });
 }
 

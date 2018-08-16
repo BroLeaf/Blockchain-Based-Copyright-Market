@@ -70,7 +70,7 @@ router.get('/detail', function(req, res) {
 
     db.dbquery("keyword", value)
     .then( (resp) => {
-        res.render('detail.ejs', { Persons: resp, Addr: resp.contractAddr });
+        res.render('detail.ejs', { Persons: resp });
     })
     .catch( (err) => {
         console.log(err);

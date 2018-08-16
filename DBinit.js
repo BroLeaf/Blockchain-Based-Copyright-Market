@@ -14,9 +14,9 @@ MongoClient.connect(url, function(err, db) {
 
         // Insert
         let obj = [
-            { type:'game', auth:'Alice', year:'1997', keyword: '#1'},
-            { type:'music', auth:'Bob', year:'1997', keyword: '#2'},
-            { type:'food', auth:'Carol', year:'2018', keyword: '#3'},
+            { type:'game', auth:'Alice', year:'1997', keyword: 'a1'},
+            { type:'music', auth:'Bob', year:'1997', keyword: 'a2'},
+            { type:'food', auth:'Carol', year:'2018', keyword: 'a3'},
         ]
         col.insert(obj);
     
