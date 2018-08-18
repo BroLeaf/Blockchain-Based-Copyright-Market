@@ -1,71 +1,17 @@
-<!--<html>
-	<head>
-		<title>Showdetail</title>
-	</head>
-	<body >  
-		<ul class="Persons">
-			<li class="person">
-				<h1>See the detail</h1>
-				<table border="1">
-					<tr>
-						<td  bgcolor="LightSteelBlue"><span>type</td><td width=150><%= Persons[0].type %></span><br></td>
-					</tr>
-					<tr>
-						<td  bgcolor="LightSteelBlue"><span>auth</td><td width=150><%= Persons[0].auth %></span><br></td>
-					</tr>
-					<tr>
-						<td  bgcolor="LightSteelBlue"><span>year</td><td width=150><%= Persons[0].year %></span><br></td>
-					</tr>
-					<tr>
-						<td  bgcolor="LightSteelBlue"><span>addr</td><td width=150><%= Persons[0].addr %></span><br></td>
-					</tr>
-				</table>
-			</li>
-			<button onclick="sendEth()"> sendEth </button>
-			<input type="button" value="download" onclick="download()"><br />
-		</ul>
-				
-		<script>
-			function download(){
-				let keyword = "<%= Persons[0].keyword %>";
-
-				if(isSent() == true) {
-					keywordFinish(keyword);
-				}
-				else {
-					alert("please send money to get the file");
-				}
-			}
-		</script>
-		<script src="/js/jquery-3.1.1.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/asmCrypto/0.22.0/asmcrypto.min.js"></script>
-		<script src="/js/PFCCTR.js"></script>
-		<script src="/js/Utility.js"></script>
-		<script src="/MAKA/MAKA.js"></script>
-		<script src="/MAKA/doMAKA.js"></script>
-		<script src="/MAKA/loadCard.js"></script>
-		<script src="/MAKA/usage.js"></script>
-		<script src="/socket.io/socket.io.js"></script>
-		<script src="/js/download.js"></script>
-		<script src="/js/users.js"></script>
-	</body>
-</html>-->
-<!DOCTYPE html>
 <html>
 	<head>
-	<title>Showdetail</title>
-	<!-- HTML meta 設定 -->
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>首頁</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="google-site-verification" content="" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<title>Showdetail</title>
+		<!-- HTML meta 設定 -->
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="google-site-verification" content="" />
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
-	<body >
+
+	<body>
+
+<!-- top bar -->
 <nav class="navi_bar">
   <div class="navi_logo">
     <a class="navi_logo_tw" href="../../">創作內容平台</a>
@@ -90,12 +36,12 @@
     </div> 
   </div>   
 </nav>
-<br>
-<br>
-<br>
         <center>
-			
-				<h1><font size='9'>See the detail</font></h1><br><br><br><br>
+				<h1>
+					<font size='9'><%=Persons[0].filename%></font>
+				</h1>
+
+				<br><br><br>
 				<a href="#" class="fa fa-google"></a>
 				<a href="#" class="fa fa-twitter"></a>
 				<a href="#" class="fa fa-github"></a>
@@ -103,23 +49,30 @@
 				
 				<table border="3">
 					<tr>
-						<td  bgcolor="LightSteelBlue" width=200 height=50><span><font size="4">Type</font>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</td><td width=500 height=50><center><%= Persons[0].type%></center></span><br></td>
+						<td>Type</td>
+						<td><%= Persons[0].type%></td>
 					</tr>
 					<tr>
-						<td  bgcolor=#B0E0E6 width=200 height=50><span><font size="4">AuthorName</font>&nbsp</td><td width=500 height=50><center><%= Persons[0].auth %></center></span><br></td>
+						<td>Author</td>
+						<td><%= Persons[0].auth %></td>
 					</tr>
 					<tr>
-						<td  bgcolor="LightSteelBlue" width=200 height=50><span><font size="4">Year of creation</font>&nbsp</td><td width=500 height=50><center><%= Persons[0].year %></center></span><br></td>
+						<td>Year</td>
+						<td><%= Persons[0].year %></td>
 					</tr>
 					<tr>
-						<td  bgcolor=#B0E0E6 width=200 height=50><span><font size="4">Address</font>&nbsp</td><td width=500 height=50><center><%= Persons[0].addr%></center></span><br></td>
+						<td>Contract Address</td>
+						<td><%= Persons[0].addr%></td>
+					</tr>
+					<tr>
+						<td>File Hash (sha256)</td>
+						<td><%= Persons[0].fileHash%></td>
 					</tr>
 				</table>
 			    <br><br>				
-				<button style="font-size: 20px; cursor: pointer; #9999FF dashed;background-color:#ADD8E6;" onclick="sendEth()"> sendEth </button>
-				<button style="font-size: 20px; cursor: pointer; #9999FF dashed;background-color:#ADD8E6;" onclick="download()">download</button>
+				<button onclick="sendEth()"> sendEth </button>
+				<button onclick="download()">download</button>
 		</center>
-	    
 				
 		<script>
 			function download(){
@@ -127,15 +80,10 @@
 				keywordFinish(keyword);
 			}
 		</script>
+
 		<script src="/js/jquery-3.1.1.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/asmCrypto/0.22.0/asmcrypto.min.js"></script>
 		<script src="/js/PFCCTR.js"></script>
 		<script src="/js/Utility.js"></script>
-		<script src="/MAKA/MAKA.js"></script>
-		<script src="/MAKA/doMAKA.js"></script>
-		<script src="/MAKA/loadCard.js"></script>
-		<script src="/MAKA/usage.js"></script>
-		<script src="/socket.io/socket.io.js"></script>
 		<script src="/js/download.js"></script>
 	</body>
 </html>

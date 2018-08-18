@@ -3,20 +3,10 @@
     <head>
         <link rel='stylesheet' href='/css/style.css' />
         <script text="text/script" src="/js/users.js"></script>
+        <script src="js/jquery-3.1.1.min.js"></script>
     </head>
 
     <body>
-
-        <script src="js/jquery-3.1.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/asmCrypto/0.22.0/asmcrypto.min.js"></script>
-        <script src="js/PFCCTR.js"></script>
-        <script src="js/Utility.js"></script>
-        <script src="MAKA/MAKA.js"></script>
-        <script src="MAKA/doMAKA.js"></script>
-        <script src="MAKA/loadCard.js"></script>
-        <script src="MAKA/usage.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="js/download.js"></script>
 
         <h1>Search area:</h1>
         <p>Please enter the name of works</p>
@@ -30,7 +20,7 @@
         <ul class="Persons">
             <% for(var i=0; i<Persons.length; i++) {%>
             <li class="person">
-            <span><a target="_blank"href="/users/detail/?tag=<%=Persons[i].keyword%>"><%= Persons[i].keyword %></span>
+            <span><a target="_blank"href="/users/detail/?tag=<%=Persons[i].keyword%>"><%= Persons[i].filename %></span>
             </li>
             <% } %>
         </ul>
