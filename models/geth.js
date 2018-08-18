@@ -5,7 +5,6 @@ web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 var fs = require('fs');
 var solc = require('solc');
 var db = require('./db');
-var latestContractAddr;
 
 function unlockAdminAccount() {
     let adminAccout = web3.eth.accounts[0];
@@ -35,23 +34,23 @@ function _uploadFileHash(fileHash) {
     let adminAccount = web3.eth.accounts[0];
     let tHash;
     
-    web3.eth.sendTransaction({
-        from: adminAccount,
-        to: adminAccount,
-        value: 0,
-        data: web3.toHex(fileHash),
-    }, (err, Hash) => {
-        if(err)
-            console.log(err);
-        else 
-            console.log("new tHash: " + Hash);
-        tHash = Hash;
-    });
-
     return new Promise( (resolve, reject) => {
-        setTimeout(function(){
-            resolve(tHash);
-        }, 3000);
+
+        web3.eth.sendTransaction({
+            from: adminAccount,
+            to: adminAccount,
+            value: 0,
+            data: web3.toHex(fileHash),
+        }, (err, Hash) => {
+            if(err) {
+                console.log(err);
+                reject(err);
+            } else {
+                console.log("new tHash: " + Hash);
+                resolve(Hash);
+            };
+        });
+        
     });
 
 }
@@ -89,7 +88,6 @@ function _createContract(addr1, addr2, keyword) {
                 console.log('Contract mined! address: ' + contract.address)
                 console.log('transactionHash: ' + contract.transactionHash);
                 db.dbupdate(keyword, contract.address);
-                latestContractAddr = contract.address;
             }
         }
     );
@@ -98,31 +96,25 @@ function _createContract(addr1, addr2, keyword) {
     return simple;
 }
 
-function _getLatestContract() {
-    return latestContractAddr;
-}
-
 function _sendEth(dest) {
+    console.log(dest);
     unlockAdminAccount();
     let adminAccount = web3.eth.accounts[0];
-    let tHash;
-
-    web3.eth.sendTransaction({
-        from: adminAccount,
-        to: dest,
-        value: web3.toWei(10, "ether")
-    }, (err, Hash) => {
-        if(err)
-            console.log(err);
-        else 
-            console.log("new tHash: " + Hash);
-        tHash = Hash;
-    });
 
     return new Promise( (resolve, reject) => {
-        setTimeout(function(){
-            resolve(tHash);
-        }, 3000);
+        web3.eth.sendTransaction({
+            from: adminAccount,
+            to: dest,
+            value: web3.toWei(10, "ether")
+        }, (err, Hash) => {
+            if(err) {
+                console.log("new err: " + err);
+                reject(err);
+            } else {
+                console.log("new tHash: " + Hash);
+                resolve(Hash);
+            }
+        });
     });
 }
 
@@ -132,6 +124,5 @@ module.exports = {
     uploadFileHash: _uploadFileHash,
     checkTHash: _checkTHash,
     createContract: _createContract,
-    getLatestContract: _getLatestContract,
     sendEth: _sendEth,
 }

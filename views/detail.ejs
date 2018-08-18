@@ -42,7 +42,7 @@
 					</tr>
 					<tr>
 						<td>Contract Address</td>
-						<td><%= Persons[0].addr%></td>
+						<td id='contract'><%= Persons[0].addr%></td>
 					</tr>
 					<tr>
 						<td>File Hash (sha256)</td>
@@ -50,20 +50,26 @@
 					</tr>
 				</table>
 			    <br><br>				
-				<button onclick="sendEth()"> sendEth </button>
+				<button onclick="sendEth()"> sendEth <br> (for demo) </button>
 				<button onclick="download()">download</button>
 		</center>
 				
 		<script>
 			function download(){
 				let keyword = "<%= Persons[0].keyword %>";
-				keywordFinish(keyword);
+				let addr = "<%= Persons[0].addr %>";
+				if(isSent(addr))
+					keywordFinish(keyword);
+				else
+					alert("Please pay first");
 			}
 		</script>
 
+		<script src="/js/asmcrypto.js"></script>
 		<script src="/js/jquery-3.1.1.min.js"></script>
 		<script src="/js/PFCCTR.js"></script>
 		<script src="/js/Utility.js"></script>
 		<script src="/js/download.js"></script>
+		<script src="/js/users.js"></script>
 	</body>
 </html>

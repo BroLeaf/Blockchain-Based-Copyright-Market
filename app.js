@@ -53,10 +53,12 @@ var indexRouter = require('./controllers/index');
 var creatorsRouter = require('./controllers/creators');
 var usersRouter = require('./controllers/users');
 var loginRouter = require('./controllers/login');
+var demoRouter = require('./controllers/demo');
 app.use('/', indexRouter);
 app.use('/creators', creatorsRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
+app.use('/demo', demoRouter);
 
 // settting header
 app.use(function(req, res, next) {

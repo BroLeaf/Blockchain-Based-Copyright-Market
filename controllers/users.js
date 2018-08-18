@@ -33,17 +33,35 @@ router.get('/', function(req, res, next) {
 
 router.post('/receiveAddr', function(req, res, next) {
     let dest = req.body.addr;
-    dest = "0xda32f218a5127b5396bd320be641152095f6b47c";       // TODO: ...
     if(dest == undefined)
         res.send("addr does not exist.");
 
     geth.sendEth(dest)
     .then( tHash => {
+        let obj = {"payed": dest};
+        db.dbinsert(obj);
         res.send({ tHash: tHash });
     })
     .catch( err => {
         console.log(err);
     });
+});
+
+router.get('/receiveAddr', function(req, res, next) {
+    let addr = req.query.addr;
+    console.log("in rounter: " + addr);
+
+    db.dbquery("payed", addr)
+    .then((resp) => {
+        if(resp.length != 0)
+            res.send('yes');
+        else
+            res.send('no');
+    })
+    .catch((e) => {
+        console.log(e);
+        res.sendStatus(500);
+    })
 });
 
 router.post('/', function(req,res){
