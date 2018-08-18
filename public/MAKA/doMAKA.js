@@ -19,7 +19,7 @@ function newCard(cardUrl, val, condition) {
     a.download = "newCard.card";
     a.click();
     var k = document.getElementById("forNewCard");
-    k.innerHTML = k.innerHTML + "<div style='position:absolute;left:0;top:100;width:100%;height:100%;z-index=99999;background-color:#f1f1f1;text-align:center;'><center><div  style='width:560px;height:300px;border:3px; border-style:outset;background-color:#E6E6FA;'><br><br><br><a download='newCard.card' href="+cardUrl+"><font size=4>If it didn't download the new card automatically,<br>please download it manually!</font></a><br><br><br><a href='/'><font size=6 color=#FFA07A>Creator GO!</font></a></div></center></div>";
+    k.innerHTML = k.innerHTML + "<div style='position:absolute;left:0;top:100;width:100%;height:100%;z-index=99999;background-color:#f1f1f1;text-align:center;'><center><div  style='width:560px;height:200px;border:3px; border-style:outset;background-color:#E6E6FA;'><br><br><br><a download='newCard.card' href="+cardUrl+"><font size=4>If it didn't download the new card automatically,<br>please download it manually!</font></a><br><br><br><a href='/'><font size=6 color=#FF5511>回首頁</font></a></div></center></div>";
 }
 
 MAKA.prototype = {

@@ -1,5 +1,5 @@
 body {
-	padding: 50px;
+	/*padding: 50px;*/
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -314,7 +314,6 @@ button:hover {
 }
 .Gray_back {
 	background-color:#E6E6FA;
-	font-family: 'Pacifico', cursive;	
 }
 .btn btn-info{
 	background-color:#ADD8E6;
@@ -350,7 +349,26 @@ button:hover {
 	background: black;
 	color: white;
 }
-
+.search-area {
+	padding: 30px;
+    text-align: center;
+    /* margin-top: 5%; */
+    margin: 5% 5% 3% 5%;
+}
+.search-area .search-icon{
+    height: 30px;
+	width: 30px;
+    top: 5px;
+    position: absolute;
+    z-index: 1;
+    right: 89px;
+}
+.search-result {
+	margin: 10% 5% 3% 5%;
+}
+.person {
+	font-size: 24px;
+}
 td {
 	text-align: center;
 	line-height: 0%;
@@ -358,15 +376,12 @@ td {
 	height: 50;
 	font-size: 2rem;
 }
-
 td:nth-child(2n) {
 	background-color: white;
 }
-
 tr:nth-child(2n) {
 	background-color: LightSteelBlue;
 }
-
 tr:nth-child(2n+1) {
 	background-color: #B0E0E6;
 }

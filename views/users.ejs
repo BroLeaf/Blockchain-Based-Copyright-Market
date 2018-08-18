@@ -1,29 +1,64 @@
 <html>
 
     <head>
-        <link rel='stylesheet' href='/css/style.css' />
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/style.css">
         <script text="text/script" src="/js/users.js"></script>
-        <script src="js/jquery-3.1.1.min.js"></script>
+		<script src="js/jquery-3.1.1.min.js"></script>
     </head>
 
     <body>
 
-        <h1>Search area:</h1>
-        <p>Please enter the name of works</p>
-        <form name="monquery" method="post" action="/users">
-            <input type="text" placeholder="keyword" name="tag" />
-            <input type="submit"  value="search" />
-        </form>
-	
-        <h1>result<h1>
-
-        <ul class="Persons">
-            <% for(var i=0; i<Persons.length; i++) {%>
-            <li class="person">
-            <span><a target="_blank"href="/users/detail/?tag=<%=Persons[i].keyword%>"><%= Persons[i].filename %></span>
-            </li>
-            <% } %>
-        </ul>
+		<nav class="navi_bar">
+			<div class="navi_logo">
+				<a class="navi_logo_tw" href="/">創作內容平台</a>
+				<div class="navi_logo_en">Taiwan Copyright Market</div>
+			</div>
+			<div class="navi_wrap_buttonarea">
+				<a href="./"><div class="navi_wrap_button" >首頁</div></a>
+				<div class="navi_wrap_vertical"></div>
+				<a href='/users' class="loginhide" ><div class="navi_wrap_button gray">逛逛市集</div></a>
+				<a href='/creators' class="loginhide" ><div class="navi_wrap_button gray">創作者上傳</div></a>
+				<a href='/login' class="loginhide"><div class="navi_wrap_button gray">會員登入</div></a>
+				<a href="https://github.com/etc276/Blockchain-Based-Copyright-Market" title="Github"><img class="github-icon" src="images/github.png"></a>
+				<div class="dropdown">
+					<div class="dropbtn navi_wrap_button gray">menu 
+					<i class="fa fa-caret-down"></i></div>
+					<div class="dropdown-content">
+						<a href="#about">關於網站</a>
+						<a href="#user-register">使用者註冊</a>
+						<a href="#Buyer">買家使用</a>
+						<a href="#Creator">創作者上傳</a>
+					</div>
+				</div> 
+			</div>   
+		</nav>
+        <div class="container search-area">
+			<h1 style="text-align: center;">搜尋作品:</h1>
+			<p>Please enter the name of works</p>
+			<div class="index-search">
+				<form name="monquery" method="post" action="/users" class="search-bar">
+					<input class="search-icon" type="image" src="images/search-icon.png"  alt="Submit form" name="Test" id="Test" onclick="SearchinIndex();" />
+					<input type="text" class="searchbar form-control" placeholder="keyword" name="tag"/>
+					<!--input type="submit"  value="search"/-->
+					<select name="key" id="select" class="form-control">
+						<option value="">所有類型</option>
+						<option value="type">作品</option>
+						<option value="auth">作者</option>
+						<option value="year">年份</option>
+					</select>
+				</form>
+			</div>
+			<ul class="search-result">
+			<h1>result<h1>
+			<% for(var i=0; i<Persons.length; i++) {%>
+			<li class="person">
+			<span><a target="_blank"href="/users/detail/?tag=<%=Persons[i].keyword%>"><%= Persons[i].filename %></span>
+			</li>
+			<% } %>
+		</ul>
+		</div>
+		
     </body>
 
 </html>

@@ -48,9 +48,9 @@ router.post('/receiveAddr', function(req, res, next) {
 
 router.post('/', function(req,res){
     let value = req.body.tag;
-    // console.log(value);
+	let key = req.body.key;
     
-    db.dbquery("type", value)
+    db.dbquery(key, value)
     .then( (resp) => {
         if(resp.length == 0) resp = {};
         res.render('users.ejs', { Persons: resp} );
