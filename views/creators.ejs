@@ -4,12 +4,17 @@
         <title><%= title %></title>
         <link rel='stylesheet' href='/css/style.css' />
         <script text="text/script" src="/js/creators.js"></script>
+		<script src="/js/jquery.min.js"></script>
+		<script> 
+			$(function(){
+			  $("#includedContent").load("topBar.html"); 
+			});
+		</script>
     </head>
 
     <body>
-
-    <div id="regForm">
-
+	<div id="includedContent"></div>
+    <div id="regForm" class="regForm">
         <!-- step 1-->
         <div class="tab">
             

@@ -5,34 +5,15 @@
 		<link rel="stylesheet" href="/css/style.css">
         <script text="text/script" src="/js/users.js"></script>
 		<script src="js/jquery-3.1.1.min.js"></script>
+		<script> 
+			$(function(){
+			  $("#includedContent").load("topBar.html"); 
+			});
+		</script>
     </head>
 
     <body>
-
-		<nav class="navi_bar">
-			<div class="navi_logo">
-				<a class="navi_logo_tw" href="/">創作內容平台</a>
-				<div class="navi_logo_en">Taiwan Copyright Market</div>
-			</div>
-			<div class="navi_wrap_buttonarea">
-				<a href="./"><div class="navi_wrap_button" >首頁</div></a>
-				<div class="navi_wrap_vertical"></div>
-				<a href='/users' class="loginhide" ><div class="navi_wrap_button gray">逛逛市集</div></a>
-				<a href='/creators' class="loginhide" ><div class="navi_wrap_button gray">創作者上傳</div></a>
-				<a href='/login' class="loginhide"><div class="navi_wrap_button gray">會員登入</div></a>
-				<a href="https://github.com/etc276/Blockchain-Based-Copyright-Market" title="Github"><img class="github-icon" src="images/github.png"></a>
-				<div class="dropdown">
-					<div class="dropbtn navi_wrap_button gray">menu 
-					<i class="fa fa-caret-down"></i></div>
-					<div class="dropdown-content">
-						<a href="#about">關於網站</a>
-						<a href="#user-register">使用者註冊</a>
-						<a href="#Buyer">買家使用</a>
-						<a href="#Creator">創作者上傳</a>
-					</div>
-				</div> 
-			</div>   
-		</nav>
+		<div id="includedContent"></div>
         <div class="container search-area">
 			<h1 style="text-align: center;">搜尋作品:</h1>
 			<p>Please enter the name of works</p>

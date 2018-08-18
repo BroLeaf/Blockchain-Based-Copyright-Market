@@ -30,13 +30,13 @@ body {
 	background-color: #f1f1f1;
 }
 
-#regForm {
+.regForm {
 	background-color: #ffffff;
-	margin: 100px auto;
-	font-family: Raleway;
-	padding: 40px;
-	width: 70%;
-	min-width: 300px;
+    font-family: Raleway;
+    padding: 40px;
+    width: 70%;
+    min-width: 300px;
+    margin: 5% 10% 3% 10%;
 }
 
 h1 {
@@ -321,7 +321,7 @@ button:hover {
 
 .fa {
 	padding: 10px;
-	font-size: 25px;
+	/*font-size: 25px;*/
 	width: 50px;
 	text-align: center;
 	text-decoration: none;

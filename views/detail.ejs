@@ -7,35 +7,15 @@
 		<link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/style.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script> 
+			$(function(){
+			  $("#includedContent").load("topBar.html"); 
+			});
+		</script>
 	</head>
 
 	<body>
-
-<!-- top bar -->
-<nav class="navi_bar">
-  <div class="navi_logo">
-    <a class="navi_logo_tw" href="../../">創作內容平台</a>
-    <div class="navi_logo_en">Taiwan Copyright Market</div>
-  </div>
-  <div class="navi_wrap_buttonarea">
-    <a href="index.html"><div class="navi_wrap_button" >首頁</div></a>
-    <div class="navi_wrap_vertical"></div>
-    <a href='/users' class="loginhide" ><div class="navi_wrap_button gray">逛逛市集</div></a>
-	<a href='/creators' class="loginhide" ><div class="navi_wrap_button gray">創作者上傳</div></a>
-	<a href='/login' class="loginhide"><div class="navi_wrap_button gray">會員登入</div></a>
-    
-    <div class="dropdown">
-      <div class="dropbtn navi_wrap_button gray">menu 
-        <i class="fa fa-caret-down"></i></div>
-      <div class="dropdown-content">
-        <a href="#about">關於網站</a>
-        <a href="#user-register">使用者註冊</a>
-        <a href="#Buyer">買家使用</a>
-        <a href="#Creator">創作者上傳</a>
-      </div>
-    </div> 
-  </div>   
-</nav>
+		<div id="includedContent"></div>
         <center>
 				<h1>
 					<font size='9'><%=Persons[0].filename%></font>
