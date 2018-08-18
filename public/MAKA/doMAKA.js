@@ -19,16 +19,7 @@ function newCard(cardUrl, val, condition) {
     a.download = "newCard.card";
     a.click();
     var k = document.getElementById("forNewCard");
-    if(val == "1") {
-        if(condition == 1)
-            k.innerHTML = k.innerHTML + "<div style='position:absolute;left:0;top:0;width:100%;height:100%;z-index=99999;background-color:white;text-align:center;'><a download='newCard.card' href="+cardUrl+">If it didn't download the new card automatically, please download it manually!</a><br><br><br><a href='/'>Creator GO!</a><br><br><br><a href='download.html'>Buyer GO!</a></div>";
-        else if(condition == 2)
-            k.innerHTML = k.innerHTML + "<div style='position:absolute;left:0;top:0;width:100%;height:100%;z-index=99999;background-color:white;text-align:center;'><a download='newCard.card' href="+cardUrl+">If it didn't download the new card automatically, please download it manually!</a><br><br><br><a href='finance_admin.html'>Continue</a></div>";
-       else 
-            k.innerHTML = k.innerHTML + "<div style='position:absolute;left:0;top:0;width:100%;height:100%;z-index=99999;background-color:white;text-align:center;'><a download='newCard.card' href="+cardUrl+">If it didn't download the new card automatically, please download it manually!</a><br><br><br><a href='Sign.html'>Continue</a></div>";
-    }
-    else
-        k.innerHTML = k.innerHTML + "<div style='position:absolute;left:0;top:0;width:100%;height:100%;z-index=99999;background-color:white;text-align:center;'><a download='newCard.card' href="+cardUrl+">If it didn't download the new card automatically, please download it manually!</a><br><br><br><a href='Sign.html'>Continue</a></div>";
+    k.innerHTML = k.innerHTML + "<div style='position:absolute;left:0;top:100;width:100%;height:100%;z-index=99999;background-color:#f1f1f1;text-align:center;'><center><div  style='width:560px;height:300px;border:3px; border-style:outset;background-color:#E6E6FA;'><br><br><br><a download='newCard.card' href="+cardUrl+"><font size=4>If it didn't download the new card automatically,<br>please download it manually!</font></a><br><br><br><a href='/'><font size=6 color=#FFA07A>Creator GO!</font></a></div></center></div>";
 }
 
 MAKA.prototype = {
@@ -68,33 +59,8 @@ MAKA.prototype = {
 $(function () {
     updateUI = function(status, newProfile, val, condition) {
         if (status == MAKA.SUCCESS) {
-            //
-            // 產生新 Profile 的下載連結：
             newCard(window.URL.createObjectURL(newProfile), val, condition);
-            //
-            // 記得提示使用者下載新 Profile
-        } else if (status == MAKA.UNREGISTERED) {
-            alert("登入失敗！尚未註冊！");
-            //
-            // 產生新 Profile 的下載連結：
-            newCard(window.URL.createObjectURL(newProfile), val, condition);
-            //
-            // 記得提示使用者下載新 Profile
-        } else if (status == MAKA.LOGIN_FAILED) {
-            alert("登入失敗！伺服器端發生錯誤！");
-            //
-            // 產生新 Profile 的下載連結：
-            newCard(window.URL.createObjectURL(newProfile), val, condition);
-            //
-            // 記得提示使用者下載新 Profile
-        } else if (status == MAKA.MAKA_FAILED) {
-            alert("登入失敗！MAKA 過程中發生錯誤！");
-            //
-            // 產生新 Profile 的下載連結：
-            newCard(window.URL.createObjectURL(newProfile), val, condition);
-            //
-            // 記得提示使用者下載新 Profile
-        } else if (status == MAKA.INVALID_CARD) {
+        }else if (status == MAKA.INVALID_CARD) {
             alert("非法的 Profile Card！密碼錯誤或上次做完 MAKA 後未更新 Card！");
         }
     }
@@ -122,8 +88,8 @@ $(function () {
                     localStorage.setItem("sessionKey", JSON.stringify(Array.apply([], makaObj.sessionKey)));
                     updateUI(result, newProfile, form.validSign.value,1);
                 }else{
-                    updateUI(result, newProfile, form.validSign.value, 0);    
-			}
+                    updateUI(result, newProfile, form.validSign.value,0);    
+				}
 		   });
         });
 

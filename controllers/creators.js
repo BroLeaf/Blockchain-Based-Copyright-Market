@@ -26,6 +26,7 @@ router.get('/userInfo', function(req, res, next) {
 router.post('/fileHash', function(req, res, next) {
     let fileHash = req.body.fileHash;
     req.session.fileHash = fileHash;
+	console.log(fileHash);
 
     geth.uploadFileHash(fileHash)
     .then( tHash => {

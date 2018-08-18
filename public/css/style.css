@@ -1,107 +1,108 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	padding: 50px;
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+	color: #00B7FF;
 }
 
 #myProgress {
-  width: 100%;
-  background-color: #ddd;
+	width: 100%;
+	background-color: #ddd;
 }
 
 #myBar {
-  width: 0%;
-  height: 30px;
-  background-color: blue;
-  text-align: center;
-  line-height: 30px;
-  color: white;
+	width: 0%;
+	height: 30px;
+	background-color: blue;
+	text-align: center;
+	line-height: 30px;
+	color: white;
 }
 
 * {
-  box-sizing: border-box;
+
+	box-sizing: border-box;
 }
 
 body {
-  background-color: #f1f1f1;
+	background-color: #f1f1f1;
 }
 
 #regForm {
-  background-color: #ffffff;
-  margin: 100px auto;
-  font-family: Raleway;
-  padding: 40px;
-  width: 70%;
-  min-width: 300px;
+	background-color: #ffffff;
+	margin: 100px auto;
+	font-family: Raleway;
+	padding: 40px;
+	width: 70%;
+	min-width: 300px;
 }
 
 h1 {
-  text-align: center;  
+	text-align: center;  
 }
 
 #Test {
-  padding: 0px;
-  border: 0px;
+	padding: 0px;
+	border: 0px;
 }
 
 input {
-  padding: 10px;
-  width: 100%;
-  font-size: 17px;
-  font-family: Raleway;
-  border: 1px solid #aaaaaa;
+	padding: 10px;
+	width: 100%;
+	font-size: 17px;
+	font-family: Raleway;
+	border: 1px solid #aaaaaa;
 }
 
 /* Mark input boxes that gets an error on validation: */
 input.invalid {
-  background-color: #ffdddd;
+	background-color: #ffdddd;
 }
 
 /* Hide all steps by default: */
 .tab {
-  display: none;
+	display: none;
 }
 
 button {
-  background-color: #4CAF50;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 17px;
-  font-family: Raleway;
-  cursor: pointer;
+	background-color: #4CAF50;
+	color: #ffffff;
+	border: none;
+	padding: 10px 20px;
+	font-size: 17px;
+	font-family: Raleway;
+	cursor: pointer;
 }
 
 button:hover {
-  opacity: 0.8;
+	opacity: 0.8;
 }
 
 #prevBtn {
-  background-color: #bbbbbb;
+	background-color: #bbbbbb;
 }
 
 /* Make circles that indicate the steps of the form: */
 .step {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbbbbb;
-  border: none;  
-  border-radius: 50%;
-  display: inline-block;
-  opacity: 0.5;
+	height: 15px;
+	width: 15px;
+	margin: 0 2px;
+	background-color: #bbbbbb;
+	border: none;  
+	border-radius: 50%;
+	display: inline-block;
+	opacity: 0.5;
 }
 
 .step.active {
-  opacity: 1;
+	opacity: 1;
 }
 
 /* Mark the steps that are finished and valid: */
 .step.finish {
-  background-color: #4CAF50;
+	background-color: #4CAF50;
 }
 
 
@@ -116,65 +117,65 @@ button:hover {
     width: 100%;
     border-bottom: 1px solid #ddd;
     position: fixed;
-
+	
     background-color: #000;
     background-color:rgba(0%,0%,0%,0.8);
     color: #000;
     border-bottom: none;
-
-  }
-  .navi_logo{
+	
+}
+.navi_logo{
     color: #000;
-  }
-  .navi_logo_tw {
-      font-size: 20px;
-      letter-spacing: 3px;
-      float: left;
-      height: 60px;
-      color: #FFF;
-      line-height: 60px;
-      margin-left: 5%;
-  }
-  .navi_logo_tw:hover{
+}
+.navi_logo_tw {
+	font-size: 20px;
+	letter-spacing: 3px;
+	float: left;
+	height: 60px;
+	color: #FFF;
+	line-height: 60px;
+	margin-left: 5%;
+}
+.navi_logo_tw:hover{
     color: #FFF;
-  }
-  .navi_logo_en {
-      letter-spacing: 5px;
-      font-size: 10px;
-      font-weight: 200px;
-      float: left;
-      height: 60px;
-      line-height: 60px;
-      margin-left: 15px;
-      color: #FFF;
-  }
-  .navi_wrap_buttonarea {
+}
+.navi_logo_en {
+	letter-spacing: 5px;
+	font-size: 10px;
+	font-weight: 200px;
+	float: left;
+	height: 60px;
+	line-height: 60px;
+	margin-left: 15px;
+	color: #FFF;
+}
+.navi_wrap_buttonarea {
     text-align: center;
     display: inline-block;
     /* border-bottom: 1px solid #353535; */
     margin-bottom: 15px;
     color: #000;
-     POSITION: absolute; 
+	POSITION: absolute; 
     right: 3%;
-  }
-  .navi_wrap_button {
-      float: left;
-      padding-left: 15px;
-      padding-right: 15px;
-      color: #FFF;
-      font-size: 14px;
-      height: 60px;
-      line-height: 60px;
-      cursor: pointer;
-  }
-  .navi_wrap_button:hover {
+}
+.navi_wrap_button {
+	float: left;
+	padding-left: 15px;
+	padding-right: 15px;
+	color: #FFF;
+	font-size: 14px;
+	height: 60px;
+	line-height: 60px;
+	cursor: pointer;
+}
+.navi_wrap_button:hover {
     color: #DAA520;
-
-  }
-  .navi_wrap_button.select {
+	
+}
+.navi_wrap_button.select {
     color: #DAA520;
-  }
-  .navi_wrap_vertical {
+}
+.navi_wrap_vertical {
     float: left;
     background-color: #ddd;
     height: 20px;
@@ -182,132 +183,174 @@ button:hover {
     width: 1px;
     margin-right: 15px;
     margin-left: 15px;
-  }
-  .gray {
+}
+.gray {
     color: #BBB;
     font-size: 14px;
-  }
-  .navi-background {
+}
+.navi-background {
     background-image: url("/images/background.jpg");
     
     background-size: cover;
     background-position: top;
     background-attachment: fixed;
     color: #FFF;
-  }
-  .navi-background .index-container {
+}
+.navi-background .index-container {
     height: 120%;
-  }
-  .github-icon{
+}
+.github-icon{
     height: 35px;
     width: 35px;
     margin-top: 11px;
     margin-left: 15px;
-  }
-  .dropdown {
+}
+.dropdown {
     float: left;
     overflow: hidden;
-  }
-  .dropdown-content {
+}
+.dropdown-content {
     display: none;
     position: fixed;
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-  }
-  .dropdown-content a {
+}
+.dropdown-content a {
     float: none;
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
     text-align: left;
-  }
-  .dropdown-content a:hover {
+}
+.dropdown-content a:hover {
     background-color: #ddd;
-  }
-  .dropdown:hover .dropdown-content {
+}
+.dropdown:hover .dropdown-content {
     display: block;
-  }
+}
 
-  
-  .index-header {
+
+.index-header {
     font-size:60px;
-		margin-top:15%;
-  }
-  .index-sub-header {
+	margin-top:15%;
+}
+.index-sub-header {
     font-size:22px;
     margin-bottom: 7%;
-  }
-  .index-search {
+}
+.index-search {
     width:70%;
     margin-top: 50px;
     margin: 0 auto;
     position: relative;
-  }
-  .index-search .searchbar {
+}
+.index-search .searchbar {
     float: left;
     width: 60%;
     height: 40px;
     padding-left: 10px;
     font-size: 20px;
     margin-left: 10%;
-  }
-  .index-search .search-icon{
+}
+.index-search .search-icon{
     height: 30px;
 	width: 30px;
     top: 5px;
     position: absolute;
     z-index: 1;
     right: 96px; 
-  }
-  .index-search #select {
+}
+.index-search #select {
     height: 40px;
     width: 150px;
     float: left;
-  }
-  .title-lead{
+}
+.title-lead{
     margin-top: 15%;
     margin-bottom: 10%;
     font-size: 50px;
     text-align: center !important;
-
-  }
-  .container-section{
+	
+}
+.container-section{
     padding-left: 0%;
     padding-right: 0%;
     margin-top: auto;
     margin-bottom: auto;
-  }
-  #about {
+}
+#about {
     /*background-color: #92a8d1;*/
-	  border: 1px solid yellow;
-	  height: 100%;
-  }
-  .text-center-section {
+	border: 1px solid yellow;
+	height: 100%;
+}
+.text-center-section {
     text-align: center;
     margin-top: 5%;
     margin-bottom: 5%;
     margin-left: auto;
     margin-right: auto; 
     font-size: 46px;   
-  }
-  .lead-section {
+}
+.lead-section {
     margin-top: 5%;
     font-size:26px;
-  }
-  #user-register {
+}
+#user-register {
     /*background-color:blue;*/
-	  border: 1px solid blue;
-	  height: 100%;
-  }
-  #Buyer {
+	border: 1px solid blue;
+	height: 100%;
+}
+#Buyer {
     /*background-color: #92a8d1;*/
-	  border: 1px solid yellow;
-	  height: 100%;
-  }
-  #Creator {
+	border: 1px solid yellow;
+	height: 100%;
+}
+#Creator {
     border: 1px solid blue;
-	  height: 100%;
-  }
+	height: 100%;
+}
+.Gray_back {
+	background-color:#E6E6FA;
+	font-family: 'Pacifico', cursive;	
+}
+.btn btn-info{
+	background-color:#ADD8E6;
+}
+
+.fa {
+	padding: 10px;
+	font-size: 25px;
+	width: 50px;
+	text-align: center;
+	text-decoration: none;
+	margin: 5px 2px;
+}
+
+.fa:hover {
+	
+	transform: scale(1.5);
+}
+
+.fa-facebook {
+	background: #3B5998;
+	color: white;
+}
+.fa-twitter {
+	background: #55ACEE;
+	color: white;
+}
+.fa-google {
+	background: #dd4b39;
+	color: white;
+}
+.fa-github {
+	background: black;
+	color: white;
+}
+td {
+	text-align: center;
+	line-height: 0%;
+}

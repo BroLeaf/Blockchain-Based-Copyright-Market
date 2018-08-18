@@ -253,12 +253,8 @@ module.exports={
 			var keywordKey=pfcctr.PFCCTR_Decrypt(loginObj.keywordKey,loginObj.userKey,
 			loginObj.userKey.slice());
 			var totalSlice=Math.ceil(filesize /CHUNK_SIZE);
-		//	var keyword="No."+db_datas;
-		//	db_datas++;
+		
 			var keywords=keywordsToHexString(keyword,keywordKey);
-			//console.log("keywords: "+keywords);
-			//console.log("filename: "+filename);
-			//	//console.log("userid: "+loginObj.userID);
 			var cur=0;
 			var remains=totalSlice;
 			input.on('data', function(data) {
@@ -369,7 +365,7 @@ module.exports={
 					})
 				});
 				form.pipe(httpreq);					
-				}
+			}
 				
 				function _sendFileMeta(){
 					var postParam = querystring.stringify({
