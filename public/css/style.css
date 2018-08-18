@@ -1,6 +1,7 @@
 body {
 	/*padding: 50px;*/
 	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+	margin:0 0 0 0;
 }
 
 a {
@@ -36,7 +37,11 @@ body {
     padding: 40px;
     width: 70%;
     min-width: 300px;
-    margin: 5% 10% 3% 10%;
+    margin-top: 100px;
+	margin-bottom: 100px;
+	margin-left: 25%;
+	margin-right: 15%;
+	position: absolute;
 }
 
 h1 {
@@ -384,4 +389,35 @@ tr:nth-child(2n) {
 }
 tr:nth-child(2n+1) {
 	background-color: #B0E0E6;
+}
+.waitloading {
+	display: none;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.5);
+	text-align: center;
+	z-index: 99;
+}
+.waitimage {
+	position: absolute;
+	margin-left: 38%;
+	margin-right: 15%;
+	margin-top: 5%;
+}
+.step-block{
+	font-size: 17px;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    height: 390px;
+    border-style: outset;
+}
+.creator-step{
+	color: black;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	position: relative;
+	margin-left: 15px;
+	width: 80%;
 }

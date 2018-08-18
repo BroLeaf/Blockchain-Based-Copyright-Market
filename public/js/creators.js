@@ -14,12 +14,14 @@ window.onload = function() {
 
     document.getElementById('btn1').addEventListener('click', function(){
         // TODO: load gif in div1
+		document.getElementById("loadingImage").style.display="flex";
         let fileHash = document.getElementById("fileHash").value;
         if( fileHash == "") {
             alert("Please input file hash");
             return;
         } else {
             uploadFileHash();
+			document.getElementById("loadingImage").style.display="none";
             nextPrev(1);
         }
     });
@@ -187,6 +189,7 @@ function nextPrev(n) {
         a.click();
     }
     showTab(currentTab);
+	changeStepColor(currentTab);
 }
 
 function fixStepIndicator(n) {
@@ -195,4 +198,15 @@ function fixStepIndicator(n) {
         x[i].className = x[i].className.replace(" active", "");
     }
     x[n].className += " active";
+}
+
+function changeStepColor(n) {
+	var y = document.getElementsByClassName("creator-step");
+	y[n-1].style.color="black";
+	y[n].style.color="blue";
+    y[n-1].style.borderTop="";
+    y[n-1].style.borderBottom="";
+    y[n].style.borderBottom="thick solid #0000FF";
+	y[n].style.borderTop="thick solid #0000FF";
+	
 }

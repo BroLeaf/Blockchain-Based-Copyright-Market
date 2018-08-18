@@ -1,5 +1,5 @@
 <html>
-
+	
     <head>
         <title><%= title %></title>
         <link rel='stylesheet' href='/css/style.css' />
@@ -7,76 +7,87 @@
 		<script src="/js/jquery.min.js"></script>
 		<script> 
 			$(function(){
-			  $("#includedContent").load("topBar.html"); 
+				$("#includedContent").load("topBar.html"); 
 			});
 		</script>
-    </head>
-
+	</head>
+	
     <body>
-	<div id="includedContent"></div>
-    <div id="regForm" class="regForm">
-        <!-- step 1-->
-        <div class="tab">
-            
-            <h1>Step 1. submit file hash</h1>
-            <h1>(check button is option)</h1>
-            <input id="fileHash" type="text" placeholder="hash of file"><br>
-            <button onclick="checkTHash()"> check </button>
-            <button id="btn1" style="float:right">Next</button>
-        
-        </div>
-        
-        
-		<!-- step 2 -->
-        <div class="tab">
-
-            <h1>Step 2. upload file</h1>
-            <form action="./file_upload" method="post" enctype="multipart/form-data">
-                <input type="file" name="stream">
-                <input type="button" data-inline="true" value="upload" id="filesubmit" onclick="uploadfile(); hasFile=true;">
-            </form>
-            <div id="myProgress">
-                <div id="myBar"> 0% </div>
-            </div>
-            <button id="btn2" style="float:right">Next</button>
-
-        </div>
-
-
-        <!-- step 3 -->
-        <div class="tab">
-            
-            <h1>Step 3. describe file</h1>
-            <input id="type" type="text" placeholder="type"><br>
-            <input id="auth" type="text" placeholder="auth"><br>
-            <input id="year" type="text" placeholder="year"><br>
-            <button id='btn3' style="float:right">Next</button>
-
-        </div>
-
-
-        <!-- Step 4 -->
-        <div class="tab">
-
-            <h1>Step 4. Create smart contract</h1>
-            <h1>(if no need, just click finish)</h1>
-            <input id="recvAddr1" type="text" placeholder="0x123"><br>
-            <input id="recvAddr2" type="text" placeholder="0x123"><br>
-            <button onclick="createContract()"> create </button>
-            <button onclick="nextPrev(1)" style="float:right">Finish</button>
-        
-        </div>
-
-          <!-- Circles which indicates the steps of the form: -->
-        <div style="text-align:center;margin-top:40px;">
-            <span class="step"></span>
-            <span class="step"></span>
-            <span class="step"></span>
-            <span class="step"></span>
-        </div>
-
-    </form>
-
+		<div id="includedContent"></div>
+			<div class="step-block">
+				<p class="creator-step">執行步驟</p>
+				<p class="creator-step">Step 1. submit file hash</p>
+				<p class="creator-step">Step 2. describe file</p>
+				<p class="creator-step">Step 3. upload file</p>
+				<p class="creator-step">Step 4. Create smart contract</p>
+			</div>
+			
+			<div id="loadingImage" class="waitloading">
+				<img src="images/loading.gif" alt="loading failded" class="waitimage">
+			</div>
+			<div id="regForm" class="regForm">
+				<!-- step 1-->
+				<div class="tab">
+					
+					<h1>Step 1. submit file hash</h1>
+				<h1>(check button is option)</h1>
+				<input id="fileHash" type="text" placeholder="hash of file"><br>
+				<button onclick="checkTHash()"> check </button>
+				<button id="btn1" style="float:right">Next</button>
+				
+			</div>
+			
+			
+			<!-- step 2 -->
+			<div class="tab">
+				
+				<h1>Step 2. upload file</h1>
+				<form action="./file_upload" method="post" enctype="multipart/form-data">
+					<input type="file" name="stream">
+					<input type="button" data-inline="true" value="upload" id="filesubmit" onclick="uploadfile(); hasFile=true;">
+				</form>
+				<div id="myProgress">
+					<div id="myBar"> 0% </div>
+				</div>
+				<button id="btn2" style="float:right">Next</button>
+				
+			</div>
+			
+			
+			<!-- step 3 -->
+			<div class="tab">
+				
+				<h1>Step 3. describe file</h1>
+				<input id="type" type="text" placeholder="type"><br>
+				<input id="auth" type="text" placeholder="auth"><br>
+				<input id="year" type="text" placeholder="year"><br>
+				<button id='btn3' style="float:right">Next</button>
+				
+			</div>
+			
+			
+			<!-- Step 4 -->
+			<div class="tab">
+				
+				<h1>Step 4. Create smart contract</h1>
+				<h1>(if no need, just click finish)</h1>
+				<input id="recvAddr1" type="text" placeholder="0x123"><br>
+				<input id="recvAddr2" type="text" placeholder="0x123"><br>
+				<button onclick="createContract()"> create </button>
+				<button onclick="nextPrev(1)" style="float:right">Finish</button>
+				
+			</div>
+			
+			<!-- Circles which indicates the steps of the form: -->
+			<div style="text-align:center;margin-top:40px;">
+				<span class="step"></span>
+				<span class="step"></span>
+				<span class="step"></span>
+				<span class="step"></span>
+			</div>
+			
+		</form>
+		
         <script src="/js/jquery-3.1.1.min.js"></script>
         <script src="/js/asmcrypto.js"></script>
         <script src="/js/PFCCTR.js"></script>
@@ -87,6 +98,6 @@
         <script src="/MAKA/usage.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="/js/upload.js"></script>
-    </body>
-
+	</body>
+	
 </html>
