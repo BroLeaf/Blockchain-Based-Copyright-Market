@@ -26,6 +26,7 @@ window.onload = function() {
             }, 2000);
             nextPrev(1);
         }
+        
     });
     
     document.getElementById('btn2').addEventListener('click', function(){

@@ -280,16 +280,35 @@ button:hover {
     text-align: center !important;
 	
 }
+.page-section {
+	padding: 80px;
+}
+.page-section hr {
+	margin: 50px;
+}
 .container-section{
     padding-left: 0%;
     padding-right: 0%;
     margin-top: auto;
     margin-bottom: auto;
 }
+.text-center-section {
+	text-align: center;
+	margin-top: 3%;
+	margin-bottom: 3%;
+	margin-left: auto;
+	margin-right: auto; 
+	font-size: 46px;   
+}
 #about {
     /*background-color: #92a8d1;*/
-	border: 1px solid yellow;
-	height: 100%;
+	border-top: 1px solid #000000;
+	  height: 100%;
+}
+.text-s1 {
+	position: relative;
+	float: left;
+	width: 33%;
 }
 .text-center-section {
     text-align: center;
@@ -305,16 +324,23 @@ button:hover {
 }
 #user-register {
     /*background-color:blue;*/
-	border: 1px solid blue;
+	border-top: 2px solid #000000;
+    background: #f6f8f8;
 	height: 100%;
+}
+.text-s2 {
+	position: relative;
+	float: left;
+	width: 50%;
 }
 #Buyer {
     /*background-color: #92a8d1;*/
-	border: 1px solid yellow;
+	border-top: 1px solid #000000;
 	height: 100%;
 }
 #Creator {
-    border: 1px solid blue;
+	border-top: 1px solid #000000;
+	background: #f6f8f8;
 	height: 100%;
 }
 .Gray_back {
