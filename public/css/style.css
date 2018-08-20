@@ -145,9 +145,8 @@ button:hover {
     color: #FFF;
 }
 .navi_logo_en {
-	letter-spacing: 5px;
+	letter-spacing: 3px;
 	font-size: 10px;
-	font-weight: 200px;
 	float: left;
 	height: 60px;
 	line-height: 60px;
@@ -241,6 +240,7 @@ button:hover {
 .index-header {
     font-size:60px;
 	margin-top:15%;
+	margin-bottom: 5%;
 }
 .index-sub-header {
     font-size:22px;
