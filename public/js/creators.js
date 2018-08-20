@@ -10,7 +10,7 @@ function init() {
 window.onload = function() {
 
     init();
-    setTimeout(() => { showTab(currentTab)}, 100);
+    setTimeout(() => { showTab(currentTab); changeStepColor(currentTab); }, 100);
 
     document.getElementById('btn1').addEventListener('click', function(){
         // TODO: load gif in div1
@@ -21,7 +21,9 @@ window.onload = function() {
             return;
         } else {
             uploadFileHash();
-			document.getElementById("loadingImage").style.display="none";
+            setTimeout(() => {
+                document.getElementById("loadingImage").style.display="none";
+            }, 2000);
             nextPrev(1);
         }
     });
@@ -202,11 +204,10 @@ function fixStepIndicator(n) {
 
 function changeStepColor(n) {
 	var y = document.getElementsByClassName("creator-step");
-	y[n-1].style.color="black";
-	y[n].style.color="blue";
-    y[n-1].style.borderTop="";
-    y[n-1].style.borderBottom="";
-    y[n].style.borderBottom="thick solid #0000FF";
-	y[n].style.borderTop="thick solid #0000FF";
-	
+	y[n].style.color="black";
+	y[n+1].style.color="blue";
+    y[n].style.borderTop="";
+    y[n].style.borderBottom="";
+    y[n+1].style.borderBottom="thick solid #0000FF";
+	y[n+1].style.borderTop="thick solid #0000FF";
 }

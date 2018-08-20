@@ -13,7 +13,9 @@ function getXHR(){
 }
 
 function sendEth() {
-    let addr = document.getElementById('contract').innerHTML;
+    let addr = document.getElementById('contract').value;
+    console.log(addr + 'addr');
+
     let xhr = getXHR();
 
     xhr.open("POST", "/users/receiveAddr", false);

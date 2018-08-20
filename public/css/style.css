@@ -409,8 +409,9 @@ tr:nth-child(2n+1) {
 	font-size: 17px;
     position: absolute;
     top: 100px;
-    left: 0;
-    height: 390px;
+	left: 0;
+	width: 250px;
+    height: 370px;
     border-style: outset;
 }
 .creator-step{
