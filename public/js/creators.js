@@ -14,7 +14,7 @@ window.onload = function() {
 
     document.getElementById('btn1').addEventListener('click', function(){
         // TODO: load gif in div1
-		document.getElementById("loadingImage").style.display="flex";
+		//document.getElementById("loadingImage").style.display="flex";
         let fileHash = document.getElementById("fileHash").value;
         if( fileHash == "") {
             alert("Please input file hash");

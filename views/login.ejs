@@ -17,38 +17,31 @@
 			});
 		</script>
 	</head>
-	<body id="bd">
+	<body>
 		<div id="includedContent"></div>
-		<br>
-		<br>
-		<br>
-		<br>
-		<center>
-			<div class="Gray_back" style="width:450px;height:500px;border:3px; border-style:outset;">	
+			<div class="Gray_back container">	
 				<div id="forNewCard"></div>
 				<div style="text-align:center;">
 					<br><h1><font size="8">Login</font></h1>
 				</div>
 				
 				<div  style="text-align:center;padding-top:5vh;">
-					
-					<form id="maka-form" method="post" onsubmit="return submitForm(this);" >
-						<br />
-						<div><p><font size="5"> Card  </font></p><center><label class="btn btn-info"><input type="file" name="profile" id="choosed-file" style="display:none" /><font size=4>上傳card</font></label></center></div>
-						<br />
-						<p><font size="5">Password  </font></p> <input type="password" name="profilePass" id="profilePass" style="width:300px;height:40px" />
-						<br />
+					<form id="maka-form" method="post" onsubmit="return submitForm(this);" style="line-height: 60px;">
+						<div>
+							<p style="font-size: 39px;">Card</p>
+							<label class="btn btn-info">
+								<input type="file" name="profile" id="choosed-file" style="display:none" />
+								<font size=4>上傳card</font>
+							</label>
+						</div>
+						<p><font size="5">Password</font></p> 
+						<input type="password" name="profilePass" id="profilePass" style="width:300px;height:40px" />
 						<input type="hidden" name="validSign" value="1">
-						<br />
-						<br />
-						<input class="sbm" type="submit" style="font-size: 20px; cursor: pointer; #9999FF outset;background-color:#ADD8E6;width:100px;height:50px;" value='Login'/>
+						<input class="sbm btn" type="submit" value='Login'/>
 					</form>
 					
-					<br>
-					<br><br><br><br><br>
 				</div>
 			</div>
-		</center>
 	</body>
 	<script src="/js/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/asmCrypto/0.22.0/asmcrypto.min.js"></script>

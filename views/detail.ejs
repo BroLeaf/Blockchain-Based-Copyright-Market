@@ -16,18 +16,17 @@
 
 	<body>
 		<div id="includedContent"></div>
-        <center>
+			<div class="detail-page">
 				<h1>
 					<font size='9'><%=Persons[0].filename%></font>
 				</h1>
-
-				<br><br><br>
-				<a href="#" class="fa fa-google"></a>
-				<a href="#" class="fa fa-twitter"></a>
-				<a href="#" class="fa fa-github"></a>
-				<a href="#" class="fa fa-facebook"></a><br>
-				
-				<table border="3">
+				<div style="text-align: center;margin:2%;">
+					<a href="#" class="fa fa-google"></a>
+					<a href="#" class="fa fa-twitter"></a>
+					<a href="#" class="fa fa-github"></a>
+					<a href="#" class="fa fa-facebook"></a><br>
+				</div>
+				<table border="3" class="table">
 					<tr>
 						<td>Type</td>
 						<td><%= Persons[0].type%></td>
@@ -48,11 +47,11 @@
 						<td>File Hash (sha256)</td>
 						<td><%= Persons[0].fileHash%></td>
 					</tr>
+					
 				</table>
 			    <br><br>				
-				<button onclick="download()">download</button>
-		</center>
-				
+				<button onclick="download()" class="btn">download</button>
+			</div>
 		<script>
 			function download(){
 				let keyword = "<%= Persons[0].keyword %>";

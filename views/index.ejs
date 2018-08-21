@@ -1,146 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-	<html>
-		
-		<head>
-			
-			<!-- HTML meta 設定 -->
-			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-			<title>首頁</title>
-			<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-			<meta name="google-site-verification" content="" />
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-			<link rel="stylesheet" href="/css/bootstrap.min.css">
-			<link rel="stylesheet" href="/css/style.css">
-			<script src="/js/jquery.min.js"></script>
-			<script src="/js/bootstrap.min.js"></script>
-			<script text="text/script" src="/js/index.js"></script>
-			<script> 
-				$(function(){
-				  $("#includedContent").load("topBar.html",function(data){
-						let k = document.getElementById("prevBar");
-						k.innerHTML = k.innerHTML +"<div class='dropdown'><div class='dropbtn navi_wrap_button gray'>menu<i class='fa fa-caret-down'></i></div><div class='dropdown-content'><a href='#about'>關於網站</a><a href='#user-register'>使用者註冊</a><a href='#Buyer'>買家使用</a><a href='#Creator'>創作者上傳</a></div></div>"
-						
-					});
+<html>
+	<head>
+		<!-- HTML meta 設定 -->
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>首頁</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="google-site-verification" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/style.css">
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/bootstrap.min.js"></script>
+		<script> 
+			$(function(){
+				$("#includedContent").load("topBar.html",function(data){
+					let k = document.getElementById("prevBar");
+					k.innerHTML = k.innerHTML +"<div class='dropdown'><div class='dropbtn navi_wrap_button gray'>menu<i class='fa fa-caret-down'></i></div><div class='dropdown-content'><a href='#about'>關於網站</a><a href='#user-register'>使用者註冊</a><a href='#Buyer'>買家使用</a><a href='#Creator'>創作者上傳</a></div></div>"
 				});
-			</script> 
-			
-		</head>
+			});
+		</script> 
 		
-		<body>
-			<div id="includedContent"></div>
-			<!-- main contain -->
-			<div class="navi-background">
-				<div class="container text-center index-container">
-					<div class="index-header" style="font-family:Microsoft JhengHei;">創產保護與推廣平台</div>
-					<!-- Search bar-->
-					<div class="index-search">
-						<input class="search-icon" type="image" src="images/search-icon.png"  alt="send" name="Test" id="Test" onclick="SearchinIndex();" />
-						<input type="text" id="search" class="searchbar form-control" placeholder="想找什麼樣的作品？">
-						<select id="select" class="form-control">
-							<option value="">所有類型</option>
-							<option value="type">作品</option>
-							<option value="auth">作者</option>
-							<option value="year">年份</option>
-						</select>
-					</div>
-					<p class="title-lead">保障你的智慧財產權，讓你創作無後顧之憂</p>
+	</head>
+	
+	<body>
+		<div id="includedContent"></div>
+		<!-- main contain -->
+		<div class="navi-background">
+			<div class="container text-center index-container">
+				<div class="index-header" style="font-family:Microsoft JhengHei;">創產保護與推廣平台</div>
+				<!-- Search bar-->
+				<div class="index-search">
+					<input class="search-icon" type="image" src="images/search-icon.png"  alt="send" name="Test" id="Test" onclick="SearchinIndex();" />
+					<input type="text" id="search" class="searchbar form-control" placeholder="想找什麼樣的作品？">
+					<select id="select" class="form-control">
+						<option value="">所有類型</option>
+						<option value="type">作品</option>
+						<option value="auth">作者</option>
+						<option value="year">年份</option>
+					</select>
 				</div>
-			</div> 
-			<!-- section1 -->
-			<section class="page-section" id="about">
+				<p class="title-lead">保障你的智慧財產權，讓你創作無後顧之憂</p>
+			</div>
+		</div> 
+		<!-- section1 -->
+		<section class="page-section" id="about">
+			<div class="container container-section">
+				<h3 class="text-center-section">關於本平台</h3>
+				<div class="lead-section text-center-section">
+					<div>
+						<p>我們提供創作者上傳、保管、販賣自己的創作，並保存創作過程在區塊鏈、<br>
+						另外對於全部平台使用者，我們提供瀏覽、購買、下載創作，<br>
+						這過程全部都透過平台的認證加密完成，保證資訊傳輸的安全。
+						</p>
+					</div>
+					<hr>
+					<h3 class="text-center-section">平台四大特點</h3>
+					<div class="text-s4">
+						<h3>區塊鏈加密技術</h3>
+						<p>上傳你的創作證明，讓你沒有後顧之憂。</p>
+					</div>
+					<div class="text-s4">
+						<h3>ACS 匿名認證系統</h3>
+						<p>用卡片取代帳號，讓你從此不用擔心帳號被盜或忘記登出。</p>
+					</div>
+					<div class="text-s4">
+						<h3>私人化安全雲端硬碟</h3>
+						<p>使用金鑰與密文存放在不同的伺服器，使得雲端系統無法窺探使用者檔案，檔案也不怕會修改。</p>
+					</div>
+					<div class="text-s4">
+						<h3>智能合約</h3>
+						<p>智能合約自動分潤，讓你快速拿錢，不怕被人私吞。</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- section2 -->
+		<section class="page-section" id="user-register">
+			<div class="container container-section">
+				<h1 class="text-center-section">使用者註冊</h1>
+				<div class="lead-section text-center-section">
+					<div class="text-s3">
+						<p>一、先去<a href="http://140.116.247.10/registration/">本網站</a>取得一張 card</p>
+						<h3>請好好保存這張 card ，遺失沒有補救方法。</h3>
+						<img src="./images/Registration.png">
+					</div>
+					<div class="text-s3">
+						<h3>二、用那張 card 向 CA 綁定真實身分</h3>
+					</div>
+					<div class="text-s3">
+						<h3>三、等平台確定 card 與 真實身分有綁定後，就可以使用平台的服務</h3>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- section3 -->
+		<section class="page-section" id="Buyer">
 				<div class="container container-section">
-					<h3 class="text-center-section">關於本平台</h3>
+					<h1 class="text-center-section">買家使用流程</h1>
 					<div class="lead-section text-center-section">
-						<div>
-							<p>我們提供創作者上傳、保管、販賣自己的創作，並保存創作過程在區塊鏈、<br>
-							另外對於全部平台使用者，我們提供瀏覽、購買、下載創作，<br>
-							這過程全部都透過平台的認證加密完成，保證資訊傳輸的安全。
-							</p>
-						</div>
-						<hr>
-						<h3 class="text-center-section">平台三大特點</h3>
-						<div class="text-s4">
-							<h3>區塊鏈加密技術</h3>
-							<p>上傳你的創作證明，讓你沒有後顧之憂。</p>
-						</div>
-						<div class="text-s4">
-							<h3>ACS 匿名認證系統</h3>
-							<p>用卡片取代帳號，讓你從此不用擔心帳號被盜或忘記登出。</p>
-						</div>
-						<div class="text-s4">
-							<h3>私人化安全雲端硬碟</h3>
-							<p>使用金鑰與密文存放在不同的伺服器，使得雲端系統無法窺探使用者檔案，檔案被修改也會出現解密錯誤。</p>
-						</div>
-						<div class="text-s4">
-							<h3>私人化安全雲端硬碟</h3>
-							<p>使用金鑰與密文存放在不同的伺服器，使得雲端系統無法窺探使用者檔案，檔案被修改也會出現解密錯誤。</p>
-						</div>
+					<div class="text-s3">
+						<h3>瀏覽喜歡的作品</h3>
+						<p>截圖</p>
+					</div>
+					<div class="text-s3">
+						<h3>付費到搜尋結果上的地址</h3>
+						<p>圖片</p>
+					</div>
+					<div class="text-s3">
+						<h3>下載檔案</h3>
+						<p>截圖</p>
+					</div>
 					</div>
 				</div>
-			</section>
-			<!-- section2 -->
-			<section class="page-section" id="user-register">
-				<div class="container container-section">
-					<h1 class="text-center-section">使用者註冊</h1>
-					<div class="lead-section text-center-section">
-						<div class="text-s3">
-							<h3>先去實驗室網站取得一張 card</h3>
-						</div>
-						<div class="text-s3">
-							<h3>用那張 card 向 CA 綁定真實身分</h3>
-						</div>
-						<div class="text-s3">
-							<h3>等平台確定 card 與 真實身分有綁定後，就可以使用平台的服務</h3>
-						</div>
+				</section>
+		<!-- section4 -->
+		<section class="page-section" id="Creator">
+			<div class="container container-section">
+				<h1 class="text-center-section">創作者使用流程</h1>
+				<div class="lead-section text-center-section">
+					<div class="text-s3">
+						<h3>一、上傳作品 Hash 值</h3>
+						<p>到<a href="https://md5file.com/calculator">網站</a>上傳檔案進去後，得到的 SHA-256 後面的值就是我們要的</p>
+						<img src="./images/GetHash.png">
+					</div>
+					<div class="text-s3">
+						<h3>二、上傳完成品</h3>
+						<p>確定前一步結果無誤，再繼續往下做</p>
+						<img src="./images/UploadFile.png">
+					</div>
+					<div class="text-s3">
+						<p>三、寫下作品敘述</p>
+						<h3>包括作者、作品類型等等，將來搜尋作品時會用到。</h3>
+						<img src="./images/UploadFileScript.png">
+					</div>
+					<div class="text-s3">
+						<p>四、選擇分潤錢包位址</p>
+						<h3>選擇分潤錢包位址，如果這步驟略過就會拿不到錢QQ</h3>
+						<img src="./images/UploadAddress.png">
 					</div>
 				</div>
-			</section>
-			<!-- section3 -->
-			<section class="page-section" id="Buyer">
-					<div class="container container-section">
-					  <h1 class="text-center-section">買家使用流程</h1>
-					  <div class="lead-section text-center-section">
-						<div class="text-s3">
-						  <h3>瀏覽喜歡的作品</h3>
-						  <p>截圖</p>
-						</div>
-						<div class="text-s3">
-						  <h3>付費到搜尋結果上的地址</h3>
-						  <p>圖片</p>
-						</div>
-						<div class="text-s3">
-						  <h3>下載檔案</h3>
-						  <p>截圖</p>
-						</div>
-					  </div>
-					</div>
-				  </section>
-			<!-- section4 -->
-			<section class="page-section" id="Creator">
-				<div class="container container-section">
-					<h1 class="text-center-section">創作者使用流程</h1>
-					<div class="lead-section text-center-section">
-						<div class="text-s3">
-							<h3>上傳作品 Hash 值</h3>
-							<p>可略過，但是不建議ㄛ</p>
-						</div>
-						<div class="text-s3">
-							<h3>上傳完成品</h3>
-							<p>確定前一步結果無誤，在繼續往下做</p>
-						</div>
-						<div class="text-s3">
-							<h3>寫下作品敘述</h3>
-							<p>包括作者、作品類型等等</p>
-						</div>
-						<div class="text-s3">
-							<h3>選擇會分潤錢包位址</h3>
-							<p>這步驟略過就會拿不到錢QQ</p>
-						</div>
-					</div>
-				</div>
-			</section>
-			
-		</body>
-		
-	</html>	
+			</div>
+		</section>
+	</body>
+	<script text="text/script" src="/js/index.js"></script>
+	
+</html>	

@@ -219,7 +219,8 @@ button:hover {
     background-color: #f9f9f9;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+	z-index: 1;
+	top: 13%;
 }
 .dropdown-content a {
     float: none;
@@ -235,8 +236,6 @@ button:hover {
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
-
 .index-header {
     font-size:60px;
 	margin-top:15%;
@@ -273,7 +272,7 @@ button:hover {
     width: 150px;
     float: left;
 }
-.title-lead{
+.title-lead {
     margin-top: 15%;
     margin-bottom: 10%;
     font-size: 50px;
@@ -305,17 +304,20 @@ button:hover {
 	border-top: 1px solid #000000;
 	  height: 100%;
 }
-.text-s3 {
+.page-section .text-s3 {
 	position: relative;
-	float: left;
-	width: 30%;
+	/* float: left; */
+	/*width: 30%;*/
 	margin-left: 1%;
 	margin-right: 1%;
+	/* text-align: left; */
+	margin-bottom: 5%;
 }
 .text-s2 {
 	position: relative;
-	float: left;
+	/* float: left; */
 	width: 50%;
+	text-align: left;
 }
 .text-s4 {
 	position: relative;
@@ -323,6 +325,7 @@ button:hover {
 	width: 21%;
 	margin-left: 2%;
 	margin-right: 2%;
+	text-align: left;
 }
 .text-center-section {
     text-align: center;
@@ -353,6 +356,11 @@ button:hover {
 	height: 100%;
 }
 .Gray_back {
+	width: 450px;
+	height: 550px;
+	border: 3px;
+	border-style: outset;
+	margin-top: 5%;
 	background-color:#E6E6FA;
 }
 .btn btn-info{
@@ -392,8 +400,7 @@ button:hover {
 .search-area {
 	padding: 30px;
     text-align: center;
-    /* margin-top: 5%; */
-    margin: 5% 5% 3% 5%;
+    margin-top: 5%;
 }
 .search-area .search-icon{
     height: 30px;
@@ -404,7 +411,7 @@ button:hover {
     right: 89px;
 }
 .search-result {
-	margin: 10% 5% 3% 5%;
+	margin: 10% 25% 3% 20%;
 }
 .person {
 	font-size: 24px;
@@ -456,4 +463,23 @@ tr:nth-child(2n+1) {
 	position: relative;
 	margin-left: 15px;
 	width: 80%;
+}
+.detail-page {
+	margin-top: 5%;
+}
+.detail-page table {
+	margin: auto;
+	width: 80%;
+}
+.detail-page .btn {
+	width: 10%;
+	margin: 0 0 0 45%;
+}
+.sbm {
+	font-size: 20px;
+	cursor: pointer;
+	border: #9999FF outset;
+	background-color:#ADD8E6;
+	width:100px;height:50px;
+	line-height:normal;
 }
