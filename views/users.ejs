@@ -1,6 +1,7 @@
 <html>
 
     <head>
+		<title>搜尋作品</title>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/css/style.css">
         <script text="text/script" src="/js/users.js"></script>
@@ -16,11 +17,11 @@
 		<div id="includedContent"></div>
         <div class="container search-area">
 			<h1 style="text-align: center;">搜尋作品:</h1>
-			<p>Please enter the name of works</p>
+			<p>請輸入檔案敘述</p>
 			<div class="index-search">
 				<form name="monquery" method="post" action="/users" class="search-bar">
 					<input class="search-icon" type="image" src="images/search-icon.png"  alt="Submit form" name="Test" id="Test" onclick="SearchinIndex();" />
-					<input type="text" class="searchbar form-control" placeholder="keyword" name="tag"/>
+					<input type="text" class="searchbar form-control" placeholder="關鍵字" name="tag"/>
 					<!--input type="submit"  value="search"/-->
 					<select name="key" id="select" class="form-control">
 						<option value="">所有類型</option>
@@ -31,7 +32,7 @@
 				</form>
 			</div>
 			<ul class="search-result">
-			<h1>result<h1>
+			<h1>搜尋結果<h1>
 			<% for(var i=0; i<Persons.length; i++) {%>
 			<li class="person">
 			<span><a target="_blank"href="/users/detail/?tag=<%=Persons[i].keyword%>"><%= Persons[i].filename %></span>

@@ -15,10 +15,10 @@
 		<div id="includedContent"></div>
 			<div class="step-block">
 				<p class="creator-step">執行步驟</p>
-				<p class="creator-step">Step 1. Submit Hash</p>
-				<p class="creator-step">Step 2. Upload File</p>
-				<p class="creator-step">Step 3. Describe File</p>
-				<p class="creator-step">Step 4. Create contract</p>
+				<p class="creator-step">步驟 1. 上傳 Hash 值</p>
+				<p class="creator-step">步驟 2. 上傳完整檔案</p>
+				<p class="creator-step">步驟 3. 檔案描述</p>
+				<p class="creator-step">步驟 4. 創造合約</p>
 			</div>
 			
 			<div id="loadingImage" class="waitloading">
@@ -28,16 +28,16 @@
 			<div id="regForm" class="regForm">
 				<!-- step 1-->
 				<div class="tab">
-					<h1>Step 1. submit file hash</h1>
-					<h1>(check button is option)</h1>
-					<input id="fileHash" type="text" placeholder="hash of file"><br>
-					<button onclick="checkTHash()"> check </button>
-					<button id="btn1" style="float:right">Next</button>
+					<h1>步驟 1. 上傳 Hash 值</h1>
+					<h1>(檢查按鈕不是必要的)</h1>
+					<input id="fileHash" type="text" placeholder="hash"><br>
+					<button onclick="checkTHash()"> 檢查 </button>
+					<button id="btn1" style="float:right">下一步</button>
 				</div>
-			</div>
+			
 			<!-- step 2 -->
 			<div class="tab">
-				<h1>Step 2. upload file</h1>
+				<h1>步驟 2. 上傳完整檔案</h1>
 				<form action="./file_upload" method="post" enctype="multipart/form-data">
 					<input type="file" name="stream">
 					<input type="button" data-inline="true" value="upload" id="filesubmit" onclick="uploadfile(); hasFile=true;">
@@ -45,28 +45,28 @@
 				<div id="myProgress">
 					<div id="myBar"> 0% </div>
 				</div>
-				<button id="btn2" style="float:right">Next</button>
+				<button id="btn2" style="float:right">下一步</button>
 			</div>
 			
 			<!-- step 3 -->
 			<div class="tab">
-				<h1>Step 3. describe file</h1>
-				<input id="type" type="text" placeholder="type"><br>
-				<input id="auth" type="text" placeholder="auth"><br>
-				<input id="year" type="text" placeholder="year"><br>
-				<button id='btn3' style="float:right">Next</button>
+				<h1>步驟 3. 檔案描述</h1>
+				<input id="type" type="text" placeholder="檔案類型"><br>
+				<input id="auth" type="text" placeholder="作者"><br>
+				<input id="year" type="text" placeholder="年份"><br>
+				<button id='btn3' style="float:right">下一步</button>
 			</div>
 			
 			<!-- Step 4 -->
 			<div class="tab">
-				<h1>Step 4. Create smart contract</h1>
-				<h1>(if no need, just click finish)</h1>
+				<h1>步驟 4. 建立合約</h1>
+				<h1>(直接按結束可以跳過這個步驟)</h1>
 				<input id="recvAddr1" type="text" placeholder="0x123"><br>
 				<input id="recvAddr2" type="text" placeholder="0x123"><br>
-				<button onclick="createContract()"> create </button>
-				<button onclick="nextPrev(1)" style="float:right">Finish</button>
+				<button onclick="createContract()"> 建立 </button>
+				<button onclick="nextPrev(1)" style="float:right">結束</button>
 			</div>
-			
+		</div>
 			<!-- Circles which indicates the steps of the form: -->
 			<div style="text-align:center;margin-top:40px;">
 				<span class="step"></span>

@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 		console.log("creators not login");
 		res.redirect('../login');
     } else {
-        res.render('creators', { title: 'For Creators' });
+        res.render('creators', { title: '創作者上傳' });
     }
 });
 
