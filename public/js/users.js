@@ -13,8 +13,8 @@ function getXHR(){
 }
 
 function sendEth() {
-    let addr = document.getElementById('contract').value;
-    console.log(addr + 'addr');
+    let addr = document.getElementById('contract').innerText;
+	console.log("contract: "+addr);
 
     let xhr = getXHR();
 
@@ -24,7 +24,7 @@ function sendEth() {
     
     let json = xhr.responseText;
     let obj = eval('(' + json + ')');
-    console.log(obj);
+	console.log(obj);
 }
 
 function isSent(addr) {

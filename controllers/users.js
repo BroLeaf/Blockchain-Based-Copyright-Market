@@ -44,7 +44,7 @@ router.post('/receiveAddr', function(req, res, next) {
     })
     .catch( err => {
         console.log(err);
-    });
+   });
 });
 
 router.get('/receiveAddr', function(req, res, next) {
