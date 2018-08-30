@@ -17,7 +17,8 @@ function _dbquery(key, value) {
 					query["$or"] = [
 						{"type":new RegExp(value)},
 						{"auth":new RegExp(value)},
-						{"year":new RegExp(value)},
+                        {"year":new RegExp(value)},
+                        {"filename":new RegExp(value)},
 					];
 				}else{
 					query[key] = new RegExp(value);

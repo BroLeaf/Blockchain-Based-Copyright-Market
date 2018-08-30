@@ -420,8 +420,7 @@ button:hover {
 td {
 	text-align: center;
 	line-height: 0%;
-	width: 200;
-	height: 50;
+	height: 65;
 	font-size: 2rem;
 }
 td:nth-child(2n) {

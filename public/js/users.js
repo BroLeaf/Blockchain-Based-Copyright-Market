@@ -30,6 +30,9 @@ function sendEth() {
 function isSent(addr) {
     let xhr = getXHR();
     console.log('isSent: ' + addr);
+    
+    if(addr == "")
+        return false;
 
     xhr.open("GET", "/users/receiveAddr?addr=" + addr, false);
     xhr.send();
