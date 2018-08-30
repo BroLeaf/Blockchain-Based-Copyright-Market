@@ -34,9 +34,9 @@
 			<ul class="search-result">
 			<h1>搜尋結果<h1>
 			<% for(var i=0; i<Persons.length; i++) {%>
-			<li class="person">
-			<span><a target="_blank"href="/users/detail/?tag=<%=Persons[i].keyword%>"><%= Persons[i].filename %></span>
-			</li>
+			<div class="person">
+				<span><a target="_blank"href="/users/detail/?tag=<%=Persons[i].keyword%>"><%= Persons[i].filename %></span>
+			</div>
 			<% } %>
 		</ul>
 		</div>

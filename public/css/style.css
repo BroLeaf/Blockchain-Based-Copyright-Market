@@ -415,6 +415,7 @@ button:hover {
 }
 .person {
 	font-size: 24px;
+	margin-top: 5px;
 }
 td {
 	text-align: center;

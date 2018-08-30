@@ -179,7 +179,7 @@ function showTab(n) {
     var x = document.getElementsByClassName("tab");
     x[n].style.display = "block";
     fixStepIndicator(n)
-}
+}   
 
 function nextPrev(n) {
     var x = document.getElementsByClassName("tab");
